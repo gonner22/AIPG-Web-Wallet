@@ -34,6 +34,7 @@ import {
     isBase64,
     sleep,
     beautifyNumber,
+    isStandardAddress,
 } from './misc.js';
 import { cChainParams, COIN, MIN_PASS_LENGTH } from './chain_params.js';
 import { decrypt } from './aes-gcm.js';
@@ -47,6 +48,14 @@ import { Database } from './database.js';
 import bitjs from './bitTrx.js';
 import { checkForUpgrades } from './changelog.js';
 import { FlipDown } from './flipdown.js';
+import {
+    cReceiveType,
+    getNameOrAddress,
+    guiAddContactPrompt,
+    guiCheckRecipientInput,
+    guiToggleReceiveType,
+} from './contacts-book.js';
+import { Buffer } from 'buffer';
 
 /** A flag showing if base MPW is fully loaded or not */
 export let fIsLoaded = false;
@@ -121,6 +130,9 @@ export async function start() {
         domGuiViewKey: document.getElementById('guiViewKey'),
         domModalQR: document.getElementById('ModalQR'),
         domModalQrLabel: document.getElementById('ModalQRLabel'),
+        domModalQrReceiveTypeBtn: document.getElementById(
+            'ModalQRReceiveTypeBtn'
+        ),
         domModalQRReader: document.getElementById('qrReaderModal'),
         domQrReaderStream: document.getElementById('qrReaderStream'),
         domCloseQrReaderBtn: document.getElementById('closeQrReader'),
@@ -256,11 +268,14 @@ export async function start() {
             'redeemCodeCreatePendingList'
         ),
         domPromoTable: document.getElementById('promo-table'),
+        domContactsTable: document.getElementById('contactsList'),
         domActivityList: document.getElementById('activity-list-content'),
         domActivityLoadMore: document.getElementById('activityLoadMore'),
         domActivityLoadMoreIcon: document.getElementById(
             'activityLoadMoreIcon'
         ),
+        domConfirmModalDialog: document.getElementById('confirmModalDialog'),
+        domConfirmModalMain: document.getElementById('confirmModalMain'),
         domConfirmModalHeader: document.getElementById('confirmModalHeader'),
         domConfirmModalTitle: document.getElementById('confirmModalTitle'),
         domConfirmModalContent: document.getElementById('confirmModalContent'),
@@ -421,8 +436,28 @@ export async function start() {
         if (publicKey) {
             await importWallet({ newWif: publicKey, fStartup: true });
 
-            // Payment processor popup
-            if (reqTo.length || reqAmount > 0) {
+            // Update the "Receive" UI to apply Translation and Contacts updates
+            await guiToggleReceiveType(cReceiveType);
+
+            // Check for Add Contact calls
+            if (urlParams.has('addcontact')) {
+                // Quick sanity check
+                const strURI = urlParams.get('addcontact');
+                if (strURI.includes(':')) {
+                    // Split to 'name' and 'pubkey'
+                    const arrParts = strURI.split(':');
+
+                    // Convert Name from HEX to UTF-8
+                    const strName = Buffer.from(arrParts[0], 'hex').toString(
+                        'utf8'
+                    );
+                    const strPubkey = arrParts[1];
+
+                    // Prompt the user to add the Contact
+                    guiAddContactPrompt(sanitizeHTML(strName), strPubkey);
+                }
+            } else if (reqTo.length || reqAmount > 0) {
+                // Payment processor popup
                 guiPreparePayment(
                     reqTo,
                     reqAmount,
@@ -705,10 +740,7 @@ export async function openSendQRScanner() {
     /* Check what data the scan contains - for the various QR request types */
 
     // Plain address (Length and prefix matches)
-    if (
-        cScan.data.length === 34 &&
-        cChainParams.current.PUBKEY_PREFIX.includes(cScan.data[0])
-    ) {
+    if (isStandardAddress(cScan.data)) {
         return guiPreparePayment(cScan.data);
     }
 
@@ -725,6 +757,32 @@ export async function openSendQRScanner() {
             cBIP21Req.options.amount || 0,
             cBIP21Req.options.label || ''
         );
+    }
+
+    // MPW Contact Request URI
+    if (cScan.data.includes('addcontact=')) {
+        // Parse as URL Params
+        const cURL = new URL(cScan.data);
+        const urlParams = new URLSearchParams(cURL.search);
+        const strURI = urlParams.get('addcontact');
+
+        // Sanity check the URI
+        if (strURI?.includes(':')) {
+            // Split to 'name' and 'pubkey'
+            const arrParts = strURI.split(':');
+
+            // If the wallet is encrypted, prompt the user to (optionally) add the Contact, before the Tx
+            const fUseName = (await hasEncryptedWallet())
+                ? await guiAddContactPrompt(
+                      sanitizeHTML(arrParts[0]),
+                      arrParts[1],
+                      false
+                  )
+                : false;
+
+            // Prompt for payment
+            return guiPreparePayment(fUseName ? arrParts[0] : arrParts[1]);
+        }
     }
 
     // No idea what this is...
@@ -746,6 +804,8 @@ export async function openSendQRScanner() {
  */
 export async function createActivityListHTML(arrTXs, fRewards = false) {
     const cNet = getNetwork();
+    const cDB = await Database.getInstance();
+    const cAccount = await cDB.getAccount();
 
     // Prepare the table HTML
     let strList = `
@@ -870,7 +930,9 @@ export async function createActivityListHTML(arrTXs, fRewards = false) {
                             .filter(([isOwnAddress, _]) => {
                                 return !isOwnAddress;
                             })
-                            .map(([_, addr]) => addr);
+                            .map(([_, addr]) =>
+                                getNameOrAddress(cAccount, addr)
+                            );
                         txContent =
                             translation.activitySentTo +
                             ' ' +
@@ -903,7 +965,7 @@ export async function createActivityListHTML(arrTXs, fRewards = false) {
                         .filter(([isOwnAddress, _]) => {
                             return !isOwnAddress;
                         })
-                        .map(([_, addr]) => addr);
+                        .map(([_, addr]) => getNameOrAddress(cAccount, addr));
 
                     if (cTx.shieldedOutputs) {
                         txContent = translation.activityReceivedShield;
@@ -1200,6 +1262,9 @@ export function guiPreparePayment(strTo = '', nAmount = 0, strDesc = '') {
         doms.domSendAmountValue,
         true
     );
+
+    // Run the Input Validity checker
+    guiCheckRecipientInput({ target: doms.domAddress1s });
 
     // Focus on the coin input box (if no pre-fill was specified)
     if (nAmount <= 0) {
@@ -2168,8 +2233,15 @@ async function renderProposals(arrProposals, fContested) {
 
                         // If found, remove the proposal and update the account with the modified localProposals array
                         if (nProposalIndex > -1) {
+                            const account = await database.getAccount();
                             localProposals.splice(nProposalIndex, 1);
-                            await database.addAccount({ localProposals });
+                            await database.addAccount({
+                                publicKey: account.publicKey,
+                                encWif: account.encWif,
+                                localProposals,
+                                contacts: account?.contacts || [],
+                                name: account?.name || '',
+                            });
                         }
                     };
 
@@ -2710,7 +2782,13 @@ export async function createProposal() {
         const account = await database.getAccount();
         const localProposals = account?.localProposals || [];
         localProposals.push(proposal);
-        await database.addAccount({ localProposals });
+        await database.addAccount({
+            publicKey: account.publicKey,
+            encWif: account.encWif,
+            localProposals,
+            contacts: account?.contacts || [],
+            name: account?.name || '',
+        });
         createAlert('success', translation.PROPOSAL_CREATED, [], 7500);
         updateGovernanceTab();
     }

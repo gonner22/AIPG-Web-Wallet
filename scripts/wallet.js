@@ -11,10 +11,11 @@ import {
     confirmPopup,
     writeToUint8,
     pubPrebaseLen,
-    createQR,
     createAlert,
     sleep,
     getSafeRand,
+    isXPub,
+    isStandardAddress,
 } from './misc.js';
 import {
     refreshChainData,
@@ -35,6 +36,7 @@ import TransportWebUSB from '@ledgerhq/hw-transport-webusb';
 import createXpub from 'create-xpub';
 import * as jdenticon from 'jdenticon';
 import { Database } from './database.js';
+import { guiRenderCurrentReceiveModal } from './contacts-book.js';
 
 export let fWalletLoaded = false;
 
@@ -67,7 +69,7 @@ class MasterKey {
 
     /**
      * @param {String} [path] - BIP32 path pointing to the private key.
-     * @return {String} encoded private key
+     * @return {Promise<String>} encoded private key
      * @abstract
      */
     async getPrivateKey(path) {
@@ -77,7 +79,7 @@ class MasterKey {
 
     /**
      * @param {String} [path] - BIP32 path pointing to the address
-     * @return {String} Address
+     * @return {Promise<String>} Address
      * @abstract
      */
     async getAddress(path) {
@@ -188,6 +190,17 @@ class MasterKey {
         );
         const address = await this.getAddress(path);
         return [address, path];
+    }
+
+    /**
+     * Derive the current address (by internal index)
+     * @return {Promise<String>} Address
+     * @abstract
+     */
+    async getCurrentAddress() {
+        return await this.getAddress(
+            getDerivationPath(this.isHardwareWallet, 0, 0, this.#addressIndex)
+        );
     }
 }
 
@@ -375,13 +388,20 @@ export function getDerivationPath(
     fLedger = false,
     nAccount = 0,
     nReceiving = 0,
-    nIndex = 0
+    nIndex = 0,
+    /**
+     * When `true` will derive based on local wallet properties, when `false` it
+     * will default to only accept given params and ignore the local configuration
+     * @type {boolean}
+     */
+    fLocalWallet = true
 ) {
-    // Coin-Type is different on Ledger, as such, we modify it if we're using a Ledger to derive a key
-    const strCoinType = fLedger
-        ? cChainParams.current.BIP44_TYPE_LEDGER
-        : cChainParams.current.BIP44_TYPE;
-    if (masterKey && !masterKey.isHD && !fLedger) {
+    // Coin-Type is different on Ledger, as such, for local wallets; we modify it if we're using a Ledger to derive a key
+    const strCoinType =
+        fLocalWallet && fLedger
+            ? cChainParams.current.BIP44_TYPE_LEDGER
+            : cChainParams.current.BIP44_TYPE;
+    if (fLocalWallet && masterKey && !masterKey.isHD && !fLedger) {
         return `:)//${strCoinType}'`;
     }
     return `m/44'/${strCoinType}'/${nAccount}'/${nReceiving}/${nIndex}`;
@@ -650,7 +670,7 @@ export async function importWallet({
             } else {
                 // Public Key Derivation
                 try {
-                    if (privateImportValue.startsWith('xpub')) {
+                    if (isXPub(privateImportValue)) {
                         await setMasterKey(
                             new HdMasterKey({
                                 xpub: privateImportValue,
@@ -662,12 +682,7 @@ export async function importWallet({
                                 xpriv: privateImportValue,
                             })
                         );
-                    } else if (
-                        privateImportValue.length === 34 &&
-                        cChainParams.current.PUBKEY_PREFIX.includes(
-                            privateImportValue[0]
-                        )
-                    ) {
+                    } else if (isStandardAddress(privateImportValue)) {
                         await setMasterKey(
                             new LegacyMasterKey({
                                 address: privateImportValue,
@@ -957,16 +972,9 @@ export async function getNewAddress({
         }
     }
 
+    // If we're generating a new address manually, then render the new address in our Receive Modal
     if (updateGUI) {
-        createQR('pivx:' + address, doms.domModalQR);
-        doms.domModalQrLabel.innerHTML =
-            'pivx:' +
-            address +
-            `<i onclick="MPW.toClipboard('${address}', this)" id="guiAddressCopy" class="fas fa-clipboard" style="cursor: pointer; width: 20px;"></i>`;
-        doms.domModalQR.firstChild.style.width = '100%';
-        doms.domModalQR.firstChild.style.height = 'auto';
-        doms.domModalQR.firstChild.classList.add('no-antialias');
-        document.getElementById('clipboard').value = address;
+        guiRenderCurrentReceiveModal();
     }
 
     return [address, path];
