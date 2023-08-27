@@ -313,12 +313,11 @@ export class HardwareWalletMasterKey extends MasterKey {
         return false;
     }
     get keyToExport() {
-        return this.getxpub(
-            getDerivationPath(true)
-                .split('/')
-                .filter((v) => !v.includes("'"))
-                .join('/')
-        );
+        const derivationPath = getDerivationPath(masterKey.isHardwareWallet)
+            .split('/')
+            .slice(0, 4)
+            .join('/');
+        return this.getxpub(derivationPath);
     }
 }
 
