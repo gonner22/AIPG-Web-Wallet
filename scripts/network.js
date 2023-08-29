@@ -197,7 +197,7 @@ export class ExplorerNetwork extends Network {
     error() {
         if (this.enabled) {
             this.disable();
-            createAlert('warning', ALERTS.CONNECTION_FAILED, []);
+            createAlert('warning', ALERTS.CONNECTION_FAILED);
         }
     }
 
@@ -654,7 +654,7 @@ export function setNetwork(network) {
 }
 
 /**
- * Sets the network in use by MPW.
+ * Gets the network in use by MPW.
  * @returns {ExplorerNetwork?} Returns the network in use, may be null if MPW hasn't properly loaded yet.
  */
 export function getNetwork() {

@@ -2,7 +2,7 @@ import { Buffer } from 'buffer';
 import { Account } from './accounts';
 import { Database } from './database';
 import { doms, toClipboard } from './global';
-import { ALERTS, translation } from './i18n';
+import { ALERTS, tr, translation } from './i18n';
 import {
     confirmPopup,
     createAlert,
@@ -274,7 +274,7 @@ export async function promptForContact() {
     const cDB = await Database.getInstance();
     const cAccount = await cDB.getAccount();
     if (!cAccount || (cAccount.contacts && cAccount.contacts.length === 0))
-        return createAlert('warning', ALERTS.CONTACTS_YOU_HAVE_NONE, [], 2500);
+        return createAlert('warning', ALERTS.CONTACTS_YOU_HAVE_NONE, 2500);
     return renderContacts(cAccount, true);
 }
 
@@ -300,8 +300,9 @@ export async function guiRenderContacts() {
     if (!cAccount || !cAccount.contacts) {
         return createAlert(
             'warning',
-            ALERTS.CONTACTS_ENCRYPT_FIRST,
-            [{ button: translation.secureYourWallet }],
+            tr(ALERTS.CONTACTS_ENCRYPT_FIRST, [
+                { button: translation.secureYourWallet },
+            ]),
             3500
         );
     }
@@ -395,10 +396,9 @@ export async function guiRenderReceiveModal(
                 doms.domModalQR.innerHTML = `
                     <center>
                         <b>${translation.secureYourWallet}</b>
-                        <p>${translation.encryptFirstForContacts.replace(
-                            '{button}',
-                            translation.secureYourWallet
-                        )}</p>
+                        <p>${tr(translation.encryptFirstForContacts, [
+                            { button: translation.secureYourWallet },
+                        ])}</p>
                     </center>
                 `;
             }
@@ -507,16 +507,15 @@ export async function guiAddContact() {
 
     // Verify the name
     if (strName.length < 1)
-        return createAlert('warning', ALERTS.CONTACTS_NAME_REQUIRED, [], 2500);
+        return createAlert('warning', ALERTS.CONTACTS_NAME_REQUIRED, 2500);
     if (strName.length > 32)
-        return createAlert('warning', ALERTS.CONTACTS_NAME_TOO_LONG, [], 2500);
+        return createAlert('warning', ALERTS.CONTACTS_NAME_TOO_LONG, 2500);
 
     // Verify the address
     if (!isStandardAddress(strAddr) && !isXPub(strAddr))
         return createAlert(
             'warning',
-            ALERTS.INVALID_ADDRESS,
-            [{ address: strAddr }],
+            tr(ALERTS.INVALID_ADDRESS, [{ address: strAddr }]),
             3000
         );
 
@@ -533,7 +532,6 @@ export async function guiAddContact() {
                 createAlert(
                     'warning',
                     ALERTS.CONTACTS_CANNOT_ADD_YOURSELF,
-                    [],
                     3500
                 );
                 return false;
@@ -542,12 +540,7 @@ export async function guiAddContact() {
     } else {
         // Ensure we're not adding (one of) our own address(es)
         if (await masterKey.isOwnAddress(strAddr)) {
-            createAlert(
-                'warning',
-                ALERTS.CONTACTS_CANNOT_ADD_YOURSELF,
-                [],
-                3500
-            );
+            createAlert('warning', ALERTS.CONTACTS_CANNOT_ADD_YOURSELF, 3500);
             return false;
         }
     }
@@ -562,13 +555,13 @@ export async function guiAddContact() {
 
     // If both Name and Key are saved, then they just tried re-adding the same Contact twice
     if (cContactByName && cContactByPubkey) {
-        createAlert('warning', ALERTS.CONTACTS_ALREADY_EXISTS, [], 3000);
+        createAlert('warning', ALERTS.CONTACTS_ALREADY_EXISTS, 3000);
         return true;
     }
 
     // If the Name is saved, but not key, then this *could* be a kind of Username-based phishing attempt
     if (cContactByName && !cContactByPubkey) {
-        createAlert('warning', ALERTS.CONTACTS_NAME_ALREADY_EXISTS, [], 4000);
+        createAlert('warning', ALERTS.CONTACTS_NAME_ALREADY_EXISTS, 4000);
         return true;
     }
 
@@ -576,8 +569,10 @@ export async function guiAddContact() {
     if (!cContactByName && cContactByPubkey) {
         createAlert(
             'warning',
-            ALERTS.CONTACTS_KEY_ALREADY_EXISTS,
-            [{ newName: strName }, { oldName: cContactByPubkey.label }],
+            tr(ALERTS.CONTACTS_KEY_ALREADY_EXISTS, [
+                { newName: strName },
+                { oldName: cContactByPubkey.label },
+            ]),
             7500
         );
         return true;
@@ -608,16 +603,15 @@ export async function guiAddContactPrompt(
 ) {
     // Verify the name
     if (strName.length < 1)
-        return createAlert('warning', ALERTS.CONTACTS_NAME_REQUIRED, [], 2500);
+        return createAlert('warning', ALERTS.CONTACTS_NAME_REQUIRED, 2500);
     if (strName.length > 32)
-        return createAlert('warning', ALERTS.CONTACTS_NAME_TOO_LONG, [], 2500);
+        return createAlert('warning', ALERTS.CONTACTS_NAME_TOO_LONG, 2500);
 
     // Verify the address
     if (!isStandardAddress(strPubkey) && !isXPub(strPubkey))
         return createAlert(
             'warning',
-            ALERTS.INVALID_ADDRESS,
-            [{ address: strPubkey }],
+            tr(ALERTS.INVALID_ADDRESS, [{ address: strPubkey }]),
             4000
         );
 
@@ -635,7 +629,6 @@ export async function guiAddContactPrompt(
                 createAlert(
                     'warning',
                     ALERTS.CONTACTS_CANNOT_ADD_YOURSELF,
-                    [],
                     3500
                 );
                 return false;
@@ -644,12 +637,7 @@ export async function guiAddContactPrompt(
     } else {
         // Ensure we're not adding (one of) our own address(es)
         if (await masterKey.isOwnAddress(strPubkey)) {
-            createAlert(
-                'warning',
-                ALERTS.CONTACTS_CANNOT_ADD_YOURSELF,
-                [],
-                3500
-            );
+            createAlert('warning', ALERTS.CONTACTS_CANNOT_ADD_YOURSELF, 3500);
             return false;
         }
     }
@@ -664,19 +652,14 @@ export async function guiAddContactPrompt(
     // If both Name and Key are saved, then they just tried re-adding the same Contact twice
     if (cContactByName && cContactByPubkey) {
         if (fDuplicateNotif)
-            createAlert('warning', ALERTS.CONTACTS_ALREADY_EXISTS, [], 3000);
+            createAlert('warning', ALERTS.CONTACTS_ALREADY_EXISTS, 3000);
         return true;
     }
 
     // If the Name is saved, but not key, then this *could* be a kind of Username-based phishing attempt
     if (cContactByName && !cContactByPubkey) {
         if (fDuplicateNotif)
-            createAlert(
-                'warning',
-                ALERTS.CONTACTS_NAME_ALREADY_EXISTS,
-                [],
-                4000
-            );
+            createAlert('warning', ALERTS.CONTACTS_NAME_ALREADY_EXISTS, 4000);
         return true;
     }
 
@@ -685,8 +668,10 @@ export async function guiAddContactPrompt(
         if (fDuplicateNotif)
             createAlert(
                 'warning',
-                ALERTS.CONTACTS_KEY_ALREADY_EXISTS,
-                [{ newName: strName }, { oldName: cContactByPubkey.label }],
+                tr(ALERTS.CONTACTS_KEY_ALREADY_EXISTS, [
+                    { newName: strName },
+                    { oldName: cContactByPubkey.label },
+                ]),
                 7500
             );
         return true;
@@ -695,19 +680,18 @@ export async function guiAddContactPrompt(
     // Render an 'Add to Contacts' UI
     const strHTML = `
         <p>
-            ${translation.addContactSubtext.replace('{strName}', strName)}
+            ${tr(translation.addContactSubtext, [{ strName: strName }])}
             <br>
             <br>
-            <i style="opacity: 0.75">${translation.addContactWarning.replace(
-                '{strName}',
-                strName
-            )}</i>
+            <i style="opacity: 0.75">${tr(translation.addContactWarning, [
+                { strName: strName },
+            ])}</i>
         </p>
     `;
 
     // Hook the Contact Prompt to the Popup UI, which resolves when the user has interacted with the Contact Prompt
     const fAdd = await confirmPopup({
-        title: translation.addContactTitle.replace('{strName}', strName),
+        title: tr(translation.addContactTitle, [{ strName: strName }]),
         html: strHTML,
     });
 
@@ -723,8 +707,7 @@ export async function guiAddContactPrompt(
         // Notify
         createAlert(
             'success',
-            ALERTS.CONTACTS_ADDED,
-            [{ strName: strName }],
+            tr(ALERTS.CONTACTS_ADDED, [{ strName: strName }]),
             3000
         );
     }
@@ -753,10 +736,9 @@ export async function guiEditContactNamePrompt(nIndex) {
 
     // Hook the Contact Prompt to the Popup UI, which resolves when the user has interacted with the Contact Prompt
     const fContinue = await confirmPopup({
-        title: translation.editContactTitle.replace(
-            '{strName}',
-            sanitizeHTML(cContact.label)
-        ),
+        title: tr(translation.editContactTitle, [
+            { strName: sanitizeHTML(cContact.label) },
+        ]),
         html: strHTML,
     });
     if (!fContinue) return false;
@@ -764,11 +746,11 @@ export async function guiEditContactNamePrompt(nIndex) {
     // Verify the name
     const strNewName = document.getElementById('contactsNewNameInput').value;
     if (strNewName.length < 1) {
-        createAlert('warning', ALERTS.CONTACTS_NAME_REQUIRED, [], 2500);
+        createAlert('warning', ALERTS.CONTACTS_NAME_REQUIRED, 2500);
         return false;
     }
     if (strNewName.length > 32) {
-        createAlert('warning', ALERTS.CONTACTS_NAME_TOO_LONG, [], 2500);
+        createAlert('warning', ALERTS.CONTACTS_NAME_TOO_LONG, 2500);
         return false;
     }
 
@@ -777,8 +759,9 @@ export async function guiEditContactNamePrompt(nIndex) {
     if (cContactByNewName) {
         createAlert(
             'warning',
-            ALERTS.CONTACTS_EDIT_NAME_ALREADY_EXISTS,
-            [{ strNewName: strNewName }],
+            tr(ALERTS.CONTACTS_EDIT_NAME_ALREADY_EXISTS, [
+                { strNewName: strNewName },
+            ]),
             4500
         );
         return false;
@@ -865,7 +848,7 @@ export async function guiAddContactQRPrompt() {
             return fAdded;
         }
     } else {
-        createAlert('warning', ALERTS.CONTACTS_NOT_A_CONTACT_QR, [], 2500);
+        createAlert('warning', ALERTS.CONTACTS_NOT_A_CONTACT_QR, 2500);
         return false;
     }
 }
@@ -881,16 +864,14 @@ export async function guiRemoveContact(index) {
 
     // Confirm the deletion
     const fConfirmed = await confirmPopup({
-        title: translation.removeContactTitle.replace(
-            '{strName}',
-            sanitizeHTML(cContact.label)
-        ),
+        title: tr(translation.removeContactTitle, [
+            { strName: sanitizeHTML(cContact.label) },
+        ]),
         html: `
             <p>
-                ${translation.removeContactSubtext.replace(
-                    '{strName}',
-                    sanitizeHTML(cContact.label)
-                )}
+                ${tr(translation.removeContactSubtext, [
+                    { strName: sanitizeHTML(cContact.label) },
+                ])}
                 <br>
                 <br>
                 <i style="opacity: 0.65">${translation.removeContactNote}</i>
@@ -913,11 +894,11 @@ export async function guiSetAccountName(strDOM) {
     // Verify the name
     const strNewName = domInput.value.trim();
     if (strNewName.length < 1) {
-        createAlert('warning', ALERTS.CONTACTS_NAME_REQUIRED, [], 2500);
+        createAlert('warning', ALERTS.CONTACTS_NAME_REQUIRED, 2500);
         return false;
     }
     if (strNewName.length > 32) {
-        createAlert('warning', ALERTS.CONTACTS_NAME_TOO_LONG, [], 2500);
+        createAlert('warning', ALERTS.CONTACTS_NAME_TOO_LONG, 2500);
         return false;
     }
 

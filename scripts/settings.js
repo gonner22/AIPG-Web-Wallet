@@ -4,6 +4,7 @@ import {
     getStakingBalance,
     mempool,
     refreshChainData,
+    renderActivityGUI,
     setDisplayForAllWalletOptions,
     updateActivityGUI,
     updateEncryptionGUI,
@@ -23,6 +24,7 @@ import {
     ALERTS,
     translation,
     arrActiveLangs,
+    tr,
 } from './i18n.js';
 import { CoinGecko, refreshPriceDisplay } from './prices.js';
 import { Database } from './database.js';
@@ -265,8 +267,7 @@ export async function setExplorer(explorer, fSilent = false) {
     if (!fSilent)
         createAlert(
             'success',
-            ALERTS.SWITCHED_EXPLORERS,
-            [{ explorerName: cExplorer.name }],
+            tr(ALERTS.SWITCHED_EXPLORERS, [{ explorerName: cExplorer.name }]),
             2250
         );
 }
@@ -281,8 +282,7 @@ async function setNode(node, fSilent = false) {
     if (!fSilent)
         createAlert(
             'success',
-            ALERTS.SWITCHED_NODE,
-            [{ node: cNode.name }],
+            tr(ALERTS.SWITCHED_NODE, [{ node: cNode.name }]),
             2250
         );
 }
@@ -428,8 +428,9 @@ async function setAnalytics(level, fSilent = false) {
     if (!fSilent)
         createAlert(
             'success',
-            ALERTS.SWITCHED_ANALYTICS,
-            [{ level: translation['analytic' + cAnalyticsLevel.name] }],
+            tr(ALERTS.SWITCHED_ANALYTICS, [
+                { level: translation['analytic' + cAnalyticsLevel.name] },
+            ]),
             2250
         );
 }
@@ -445,20 +446,17 @@ export async function toggleTestnet() {
     // If the current wallet is not saved, we'll ask the user for confirmation, since they'll lose their wallet if they switch with an unsaved wallet!
     if (masterKey && !(await hasEncryptedWallet())) {
         const fContinue = await confirmPopup({
-            title: translation.netSwitchUnsavedWarningTitle.replace(
-                '{network}',
-                cChainParams.current.name
-            ),
+            title: tr(translation.netSwitchUnsavedWarningTitle, [
+                { network: cChainParams.current.name },
+            ]),
             html: `
-            <b>${translation.netSwitchUnsavedWarningSubtitle.replace(
-                '{network}',
-                cChainParams.current.name
-            )}</b>
+            <b>${tr(translation.netSwitchUnsavedWarningSubtitle, [
+                { network: cChainParams.current.name },
+            ])}</b>
             <br>
-            ${translation.netSwitchUnsavedWarningSubtext.replace(
-                '{network}',
-                cNextNetwork.name
-            )}
+            ${tr(translation.netSwitchUnsavedWarningSubtext, [
+                { network: cNextNetwork.name },
+            ])}
             <br>
             <br>
             <i style="opacity:0.65">${
@@ -521,6 +519,9 @@ export async function toggleTestnet() {
         // Hide "Import Wallet" so the user has to follow the `accessOrImportWallet()` flow
         doms.domImportWallet.style.display = 'none';
     }
+
+    // Re-render the Activity UI as empty
+    await renderActivityGUI([]);
 
     mempool.UTXOs = [];
     getBalance(true);
