@@ -19,7 +19,7 @@ import {
 } from './misc.js';
 import {
     refreshChainData,
-    hideAllWalletOptions,
+    setDisplayForAllWalletOptions,
     getBalance,
     getStakingBalance,
 } from './global.js';
@@ -37,6 +37,7 @@ import createXpub from 'create-xpub';
 import * as jdenticon from 'jdenticon';
 import { Database } from './database.js';
 import { guiRenderCurrentReceiveModal } from './contacts-book.js';
+import { Account } from './accounts.js';
 
 export let fWalletLoaded = false;
 
@@ -267,7 +268,10 @@ export class HdMasterKey extends MasterKey {
         if (this._isViewOnly) return this._hdKey.publicExtendedKey;
         // We need the xpub to point at the account level
         return this._hdKey.derive(
-            getDerivationPath(false).split('/').slice(0, 4).join('/')
+            getDerivationPath(false, 0, 0, 0, false)
+                .split('/')
+                .slice(0, 4)
+                .join('/')
         ).publicExtendedKey;
     }
 }
@@ -593,7 +597,6 @@ export function deriveAddress({ pkBytes, publicKey, output = 'ENCODED' }) {
  * @param {string | Array<number>} options.newWif - The import data (if omitted, the UI input is accessed)
  * @param {boolean} options.fRaw - Whether the import data is raw bytes or encoded (WIF, xpriv, seed)
  * @param {boolean} options.isHardwareWallet - Whether the import is from a Hardware wallet or not
- * @param {boolean} options.skipConfirmation - Whether to skip the import UI confirmation or not
  * @param {boolean} options.fSavePublicKey - Whether to save the derived public key to disk (for View Only mode)
  * @param {boolean} options.fStartup - Whether the import is at Startup or at Runtime
  * @returns {Promise<void>}
@@ -602,17 +605,12 @@ export async function importWallet({
     newWif = false,
     fRaw = false,
     isHardwareWallet = false,
-    skipConfirmation = false,
     fSavePublicKey = false,
     fStartup = false,
 } = {}) {
-    const strImportConfirm =
-        "Do you really want to import a new address? If you haven't saved the last private key, the wallet will be LOST forever.";
-    const walletConfirm =
-        fWalletLoaded && !skipConfirmation
-            ? await confirmPopup({ html: strImportConfirm })
-            : true;
-
+    // TODO: remove `walletConfirm`, it is useless as Accounts cannot be overriden, and multi-accounts will come soon anyway
+    // ... just didn't want to add a huge whitespace change from removing the `if (walletConfirm) {` line
+    const walletConfirm = true;
     if (walletConfirm) {
         if (isHardwareWallet) {
             // Firefox does NOT support WebUSB, thus cannot work with Hardware wallets out-of-the-box
@@ -732,15 +730,9 @@ export async function importWallet({
         );
         jdenticon.update('#identicon');
 
-        // Hide the encryption prompt if the user is in Testnet mode
-        // ... or is using a hardware wallet, or is view-only mode.
-        if (
-            !(
-                cChainParams.current.isTestnet ||
-                isHardwareWallet ||
-                masterKey.isViewOnly
-            )
-        ) {
+        // Hide the encryption prompt if the user is using
+        // a hardware wallet, or is view-only mode.
+        if (!(isHardwareWallet || masterKey.isViewOnly)) {
             if (
                 // If the wallet was internally imported (not UI pasted), like via vanity, display the encryption prompt
                 (((fRaw && newWif.length) || newWif) &&
@@ -753,6 +745,9 @@ export async function importWallet({
                 // If the wallet was pasted and is an encrypted import, display the lock wallet UI
                 doms.domWipeWallet.hidden = false;
             }
+        } else {
+            // Hide the encryption UI
+            doms.domGenKeyWarning.style.display = 'none';
         }
 
         // Fetch state from explorer, if this import was post-startup
@@ -762,7 +757,7 @@ export async function importWallet({
         }
 
         // Hide all wallet starter options
-        hideAllWalletOptions();
+        setDisplayForAllWalletOptions('none');
     }
 }
 
@@ -770,7 +765,7 @@ export async function importWallet({
  * Set or replace the active Master Key with a new Master Key
  * @param {MasterKey} mk - The new Master Key to set active
  */
-async function setMasterKey(mk) {
+export async function setMasterKey(mk) {
     masterKey = mk;
     // Update the network master key
     await getNetwork().setMasterKey(masterKey);
@@ -778,12 +773,9 @@ async function setMasterKey(mk) {
 
 // Wallet Generation
 export async function generateWallet(noUI = false) {
-    const strImportConfirm =
-        "Do you really want to import a new address? If you haven't saved the last private key, the wallet will be LOST forever.";
-    const walletConfirm =
-        fWalletLoaded && !noUI
-            ? await confirmPopup({ html: strImportConfirm })
-            : true;
+    // TODO: remove `walletConfirm`, it is useless as Accounts cannot be overriden, and multi-accounts will come soon anyway
+    // ... just didn't want to add a huge whitespace change from removing the `if (walletConfirm) {` line
+    const walletConfirm = true;
     if (walletConfirm) {
         const mnemonic = generateMnemonic();
 
@@ -796,8 +788,7 @@ export async function generateWallet(noUI = false) {
         await setMasterKey(new HdMasterKey({ seed }));
         fWalletLoaded = true;
 
-        if (!cChainParams.current.isTestnet)
-            doms.domGenKeyWarning.style.display = 'block';
+        doms.domGenKeyWarning.style.display = 'block';
         // Add a listener to block page unloads until we are sure the user has saved their keys, safety first!
         addEventListener('beforeunload', beforeUnloadListener, {
             capture: true,
@@ -805,7 +796,7 @@ export async function generateWallet(noUI = false) {
 
         // Display the dashboard
         doms.domGuiWallet.style.display = 'block';
-        hideAllWalletOptions();
+        setDisplayForAllWalletOptions('none');
 
         // Update identicon
         doms.domIdenticon.dataset.jdenticonValue = masterKey.getAddress(
@@ -875,11 +866,22 @@ export async function encryptWallet(strPassword = '') {
     // Hide the encryption warning
     doms.domGenKeyWarning.style.display = 'none';
 
-    const database = await Database.getInstance();
-    database.addAccount({
+    // Prepare to Add/Update an account in the DB
+    const cAccount = new Account({
         publicKey: await masterKey.keyToExport,
         encWif: strEncWIF,
     });
+
+    // Incase of a "Change Password", we check if an Account already exists
+    const database = await Database.getInstance();
+    if (await database.getAccount()) {
+        // Update the existing Account (new encWif) in the DB
+        await database.updateAccount(cAccount);
+    } else {
+        // Add the new Account to the DB
+        await database.addAccount(cAccount);
+    }
+
     // Remove the exit blocker, we can annoy the user less knowing the key is safe in their database!
     removeEventListener('beforeunload', beforeUnloadListener, {
         capture: true,
@@ -900,7 +902,6 @@ export async function decryptWallet(strPassword = '') {
     } else {
         await importWallet({
             newWif: strDecWIF,
-            skipConfirmation: true,
             // Save the public key to disk for View Only mode
             fSavePublicKey: true,
         });
