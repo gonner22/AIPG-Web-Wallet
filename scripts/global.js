@@ -613,7 +613,7 @@ export function updateTicker() {
     doms.domStakeAmountCoinsTicker.innerText = cChainParams.current.TICKER;
 
     // Unstake
-    doms.domStakeAmountValueCurrency.innerText = strCurrency.toUpperCase();
+    doms.domUnstakeAmountValueCurrency.innerText = strCurrency.toUpperCase();
     doms.domUnstakeAmountCoinsTicker.innerText = cChainParams.current.TICKER;
 }
 
