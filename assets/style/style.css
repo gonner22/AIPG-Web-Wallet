@@ -761,6 +761,7 @@ progress[value]::-moz-progress-bar {
     padding: 10px;
     border-top: solid #521186 1px;
     background-color: #2b09508c;
+    backdrop-filter: blur(4px);
 }
 
 .footer {
@@ -786,6 +787,7 @@ progress[value]::-moz-progress-bar {
     border-bottom-width: 1px;
     position: fixed;
     width: 100%;
+    min-height: 77px;
 }
 
 /* New styling */
