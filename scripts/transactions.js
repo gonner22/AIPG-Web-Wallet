@@ -83,12 +83,6 @@ export async function createTxGUI() {
     // Cache the "end" receiver, which will be an Address
     let strReceiverAddress = strRawReceiver;
 
-    // If Staking address: redirect to staking page
-    if (strRawReceiver.startsWith(cChainParams.current.STAKING_PREFIX)) {
-        createAlert('warning', ALERTS.STAKE_NOT_SEND, 7500);
-        return doms.domStakeTab.click();
-    }
-
     // Check for any contacts that match the input
     const cDB = await Database.getInstance();
     const cAccount = await cDB.getAccount();
@@ -125,6 +119,18 @@ export async function createTxGUI() {
         strReceiverAddress = cReceiverWallet.getAddress(strPath);
     }
 
+    // If Staking address: redirect to staking page
+    if (
+        strReceiverAddress.startsWith(cChainParams.current.STAKING_PREFIX) &&
+        strRawReceiver.length === 34
+    ) {
+        createAlert('warning', ALERTS.STAKE_NOT_SEND, 7500);
+        // Close the current Send Popup
+        toggleBottomMenu('transferMenu', 'transferAnimation');
+        // Open the Staking Dashboard
+        return doms.domStakeTab.click();
+    }
+
     // Check if the Receiver Address is a valid P2PKH address
     if (!isStandardAddress(strReceiverAddress))
         return createAlert(
@@ -146,17 +152,21 @@ export async function createTxGUI() {
         isDelegation: false,
     });
 
-    // Wipe any payment request info
-    if (cRes.ok && doms.domReqDesc.value) {
-        // Description
-        doms.domReqDesc.value = '';
-        doms.domReqDisplay.style.display = 'none';
+    // If successful, wipe Tx input
+    if (cRes.ok) {
         // Address
         doms.domAddress1s.value = '';
         // Amount
         doms.domSendAmountCoins.value = '';
         // Price
         doms.domSendAmountValue.value = '';
+
+        // Wipe any Payment Request info
+        if (doms.domReqDesc.value) {
+            // Description
+            doms.domReqDesc.value = '';
+            doms.domReqDisplay.style.display = 'none';
+        }
     }
 }
 
