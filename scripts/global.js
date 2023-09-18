@@ -2083,7 +2083,11 @@ async function waitForSubmissionBlockHeight(cProposalCache) {
  */
 function getProposalFinalisationStatus(cPropCache) {
     const cNet = getNetwork();
-    const nConfsLeft = cPropCache.nSubmissionHeight + 6 - cNet.cachedBlockCount;
+    // Confirmations left until finalisation, by network consensus
+    const nConfsLeft =
+        cPropCache.nSubmissionHeight +
+        cChainParams.current.proposalFeeConfirmRequirement -
+        cNet.cachedBlockCount;
 
     if (cPropCache.nSubmissionHeight === 0 || cNet.cachedBlockCount === 0) {
         return translation.proposalFinalisationConfirming;
@@ -2171,6 +2175,7 @@ async function renderProposals(arrProposals, fContested) {
                     Nays: 0,
                     local: true,
                     Ratio: 0,
+                    IsEstablished: false,
                     mpw: p,
                 };
             }) || [];
@@ -2224,12 +2229,24 @@ async function renderProposals(arrProposals, fContested) {
         const nNetYesPercent = (nNetYes / cMasternodes.enabled) * 100;
 
         // Proposal Status calculation
-        const nRequiredVotes = Math.round(cMasternodes.enabled * 0.1);
-        const strStatus =
-            nNetYes >= nRequiredVotes
-                ? translation.proposalPassing
-                : translation.proposalFailing;
-        let strFundingStatus = translation.proposalNotFunded;
+        const nRequiredVotes = cMasternodes.enabled / 10;
+        let strStatus = '';
+        let strFundingStatus = '';
+
+        // Proposal Status calculations
+        if (nNetYes < nRequiredVotes) {
+            // Scenario 1: Not enough votes
+            strStatus = translation.proposalFailing;
+            strFundingStatus = translation.proposalNotFunded;
+        } else if (!cProposal.IsEstablished) {
+            // Scenario 2: Enough votes, but not established
+            strStatus = translation.proposalFailing;
+            strFundingStatus = translation.proposalTooYoung;
+        } else {
+            // Scenario 3: Enough votes, and established
+            strStatus = translation.proposalPassing;
+            strFundingStatus = translation.proposalFunded;
+        }
 
         // Funding Status and allocation calculations
         if (cProposal.local) {
@@ -2240,14 +2257,14 @@ async function renderProposals(arrProposals, fContested) {
                     updateGovernanceTab
                 );
             }
-            const strStatus = getProposalFinalisationStatus(cPropCache);
+            const strLocalStatus = getProposalFinalisationStatus(cPropCache);
             const finalizeButton = document.createElement('button');
             finalizeButton.className = 'pivx-button-small';
             finalizeButton.innerHTML = '<i class="fas fa-check"></i>';
 
             if (
-                strStatus === translation.proposalFinalisationReady ||
-                strStatus === translation.proposalFinalisationExpired
+                strLocalStatus === translation.proposalFinalisationReady ||
+                strLocalStatus === translation.proposalFinalisationExpired
             ) {
                 finalizeButton.addEventListener('click', async () => {
                     const result = await Masternode.finalizeProposal(
@@ -2320,7 +2337,7 @@ async function renderProposals(arrProposals, fContested) {
 
             domStatus.innerHTML = `
             <span style="font-size:12px; line-height: 15px; display: block; margin-bottom:15px;">
-                <span style="color:#fff; font-weight:700;">${strStatus}</span><br>
+                <span style="color:#fff; font-weight:700;">${strLocalStatus}</span><br>
             </span>
             <span class="governArrow for-mobile ptr">
                 <i class="fa-solid fa-angle-down"></i>
@@ -2329,6 +2346,7 @@ async function renderProposals(arrProposals, fContested) {
         } else {
             if (domTable.id == 'proposalsTableBody') {
                 if (
+                    cProposal.IsEstablished &&
                     nNetYes >= nRequiredVotes &&
                     totalAllocatedAmount + cProposal.MonthlyPayment <=
                         cChainParams.current.maxPayment / COIN
