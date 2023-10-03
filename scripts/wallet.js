@@ -29,6 +29,7 @@ import { guiRenderCurrentReceiveModal } from './contacts-book.js';
 import { Account } from './accounts.js';
 import { debug, fAdvancedMode } from './settings.js';
 import { strHardwareName, getHardwareWalletKeys } from './ledger.js';
+import { getEventEmitter } from './event_bus.js';
 export let fWalletLoaded = false;
 
 /**
@@ -316,9 +317,6 @@ export async function importWallet({
                 return;
             }
 
-            // Hide the 'export wallet' button, it's not relevant to hardware wallets
-            doms.domExportWallet.hidden = true;
-
             createAlert(
                 'info',
                 tr(ALERTS.WALLET_HARDWARE_WALLET, [
@@ -420,10 +418,9 @@ export async function importWallet({
         }
 
         // For non-HD wallets: hide the 'new address' button, since these are essentially single-address MPW wallets
-        if (!wallet.isHD()) doms.domNewAddress.style.display = 'none';
 
         // Update the loaded address in the Dashboard
-        wallet.getNewAddress({ updateGUI: true });
+        getNewAddress({ updateGUI: true });
 
         // Display Text
         doms.domGuiWallet.style.display = 'block';
@@ -461,6 +458,7 @@ export async function importWallet({
 
         // Hide all wallet starter options
         setDisplayForAllWalletOptions('none');
+        getEventEmitter().emit('wallet-import');
     }
 }
 
@@ -498,7 +496,6 @@ export async function generateWallet(noUI = false) {
         await getNewAddress({ updateGUI: true });
 
         // Refresh the balance UI (why? because it'll also display any 'get some funds!' alerts)
-        getBalance(true);
         getStakingBalance(true);
     }
 
