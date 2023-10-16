@@ -161,9 +161,10 @@ async function parseTXs(arrTXs) {
         // Update the time cache
         prevTimestamp = cTx.time * 1000;
 
-        // Coinbase Transactions (rewards) require 100 confs
+        // Coinbase Transactions (rewards) require coinbaseMaturity confs
         const fConfirmed =
-            cNet.cachedBlockCount - cTx.blockHeight >= props.rewards ? 100 : 6;
+            cNet.cachedBlockCount - cTx.blockHeight >=
+            (props.rewards ? cChainParams.current.coinbaseMaturity : 6);
 
         // Choose the content type, for the Dashboard; use a generative description, otherwise, a TX-ID
         // let txContent = props.rewards ? cTx.id : 'Block Reward';
