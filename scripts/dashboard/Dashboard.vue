@@ -483,7 +483,7 @@ defineExpose({
                 class="col-12 p-0"
                 v-if="
                     wallet.isViewOnly.value &&
-                    !needsToEncrypt &&
+                    wallet.isEncrypted.value &&
                     wallet.isImported.value
                 "
             >
