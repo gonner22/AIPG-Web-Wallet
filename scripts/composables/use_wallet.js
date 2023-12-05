@@ -20,13 +20,13 @@ export function useWallet() {
     const getKeyToBackup = async () => await wallet.getKeyToBackup();
     const isEncrypted = ref(true);
 
-    const setMasterKey = (mk) => {
+    const setMasterKey = async (mk) => {
         wallet.setMasterKey(mk);
         isImported.value = wallet.isLoaded();
         isHardwareWallet.value = wallet.isHardwareWallet();
         isHD.value = wallet.isHD();
         isViewOnly.value = wallet.isViewOnly();
-        hasEncryptedWallet().then((i) => (isEncrypted.value = i));
+        isEncrypted.value = await hasEncryptedWallet();
     };
     const getAddress = () => wallet.getAddress();
     const isHardwareWallet = ref(wallet.isHardwareWallet());
