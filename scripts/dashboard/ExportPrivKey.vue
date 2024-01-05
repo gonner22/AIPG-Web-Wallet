@@ -50,7 +50,7 @@ function close() {
             <template #footer>
                 <center>
                     <button
-                        class="pivx-button-big"
+                        class="aipg-button-big"
                         @click="blur = !blur"
                         data-testid="blurBtn"
                     >

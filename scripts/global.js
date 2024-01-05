@@ -344,7 +344,7 @@ export async function start() {
         // Refresh blockchain data
         refreshChainData();
 
-        // Fetch the PIVX prices
+        // Fetch the AIPG prices
         refreshPriceDisplay();
     }, 15000);
 
@@ -1366,7 +1366,7 @@ async function renderProposals(arrProposals, fContested) {
             }
             const strLocalStatus = getProposalFinalisationStatus(cPropCache);
             const finalizeButton = document.createElement('button');
-            finalizeButton.className = 'pivx-button-small';
+            finalizeButton.className = 'aipg-button-small';
             finalizeButton.innerHTML = '<i class="fas fa-check"></i>';
 
             if (
@@ -1550,13 +1550,13 @@ async function renderProposals(arrProposals, fContested) {
             domVoteBtns.style = 'vertical-align: middle;';
             voteBtn = '';
         } else {
-            let btnYesClass = 'pivx-button-small';
-            let btnNoClass = 'pivx-button-small';
+            let btnYesClass = 'aipg-button-small';
+            let btnNoClass = 'aipg-button-small';
             if (cProposal.YourVote) {
                 if (cProposal.YourVote === 1) {
-                    btnYesClass += ' pivx-button-big-yes-gov';
+                    btnYesClass += ' aipg-button-big-yes-gov';
                 } else {
-                    btnNoClass += ' pivx-button-big-no-gov';
+                    btnNoClass += ' aipg-button-big-no-gov';
                 }
             }
             const domVoteBtns = domRow.insertCell();
@@ -1938,7 +1938,7 @@ export async function createProposal() {
         }" style="text-align: center;"><br>
                <input id="proposalUrl" maxlength="64" placeholder="${
                    translation.popupExample
-               } https://forum.pivx.org/..." style="text-align: center;"><br>
+               } https://forum.aipg.org/..." style="text-align: center;"><br>
                <input type="number" id="proposalCycles" min="1" max="${
                    cChainParams.current.maxPaymentCycles
                }" placeholder="${

@@ -174,7 +174,7 @@ async function selectContact() {
                                             {{ translation.sendAmountCoinsMax }}
                                         </div>
                                     </span>
-                                    <span class="input-group-text">PIVX</span>
+                                    <span class="input-group-text">AIPG</span>
                                 </div>
                             </div>
                         </div>
@@ -232,7 +232,7 @@ async function selectContact() {
 
                     <div class="text-right pb-2">
                         <button
-                            class="pivx-button-medium w-100"
+                            class="aipg-button-medium w-100"
                             style="margin: 0px"
                             @click="send()"
                             data-testid="sendButton"

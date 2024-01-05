@@ -16,7 +16,7 @@ export const MAX_ACCOUNT_GAP = 20;
 export const MIN_PASS_LENGTH = 6;
 
 /** BIP21 coin prefix */
-export const BIP21_PREFIX = 'pivx';
+export const BIP21_PREFIX = 'aipg';
 
 /* chainparams */
 export const cChainParams = reactive({
@@ -25,11 +25,11 @@ export const cChainParams = reactive({
         name: 'mainnet',
         collateralInSats: 10000 * COIN,
         isTestnet: false,
-        TICKER: 'PIV',
-        PUBKEY_PREFIX: ['D'],
-        STAKING_PREFIX: 'S',
-        PUBKEY_ADDRESS: 30,
-        STAKING_ADDRESS: 63,
+        TICKER: 'AIPG',
+        PUBKEY_PREFIX: ['A'],
+        STAKING_PREFIX: 'A',
+        PUBKEY_ADDRESS: 23,
+        STAKING_ADDRESS: 23,
         SECRET_KEY: 212,
         BIP44_TYPE: 119,
         BIP44_TYPE_LEDGER: 77,
@@ -38,9 +38,7 @@ export const cChainParams = reactive({
         // A list of Labs-trusted explorers
         Explorers: [
             // Display name      Blockbook-compatible API base
-            { name: 'rockdev', url: 'https://explorer.rockdev.org' },
-            { name: 'zkBitcoin', url: 'https://zkbitcoin.com' },
-            { name: 'Duddino', url: 'https://explorer.duddino.com' },
+            { name: 'AIPG-blockbook', url: 'https://localhost:5500' },
         ],
         Nodes: [{ name: 'Duddino', url: 'https://rpc.duddino.com/mainnet' }],
         Consensus: {
@@ -52,18 +50,18 @@ export const cChainParams = reactive({
         proposalFee: 50 * COIN,
         proposalFeeConfirmRequirement: 6,
         maxPaymentCycles: 6,
-        maxPayment: 10 * 43200 * COIN, // 43200 blocks of 10 PIV
-        defaultColdStakingAddress: 'SdgQDpS8jDRJDX8yK8m9KnTMarsE84zdsy', // Labs Cold Pool
+        maxPayment: 10 * 43200 * COIN, // 43200 blocks of 10 AIPG
+        defaultColdStakingAddress: 'AdgQDpS8jDRJDX8yK8m9KnTMarsE84zdsy', // Labs Cold Pool
     },
     testnet: {
         name: 'testnet',
         collateralInSats: 10000 * COIN,
         isTestnet: true,
-        TICKER: 'tPIV',
-        PUBKEY_PREFIX: ['x', 'y'],
-        STAKING_PREFIX: 'W',
-        PUBKEY_ADDRESS: 139,
-        STAKING_ADDRESS: 73,
+        TICKER: 'tAIPG',
+        PUBKEY_PREFIX: ['a', 'a'],
+        STAKING_PREFIX: 'a',
+        PUBKEY_ADDRESS: 23,
+        STAKING_ADDRESS: 23,
         SECRET_KEY: 239,
         BIP44_TYPE: 1,
         BIP44_TYPE_LEDGER: 1,
@@ -72,8 +70,7 @@ export const cChainParams = reactive({
         // A list of Labs-trusted explorers
         Explorers: [
             // Display name      Blockbook-compatible API base
-            { name: 'rockdev', url: 'https://testnet.rockdev.org' },
-            { name: 'duddino', url: 'https://testnet.duddino.com' },
+            { name: 'AIPG-blockbook', url: 'https://localhost:5500' },
         ],
         Nodes: [{ name: 'Duddino', url: 'https://rpc.duddino.com/testnet' }],
         Consensus: {
@@ -85,8 +82,8 @@ export const cChainParams = reactive({
         proposalFee: 50 * COIN,
         proposalFeeConfirmRequirement: 3,
         maxPaymentCycles: 20,
-        maxPayment: 10 * 144 * COIN, // 144 blocks of 10 tPIV
-        defaultColdStakingAddress: 'WmNziUEPyhnUkiVdfsiNX93H6rSJnios44', // Sparrow's Testnet Cold Pool
+        maxPayment: 10 * 144 * COIN, // 144 blocks of 10 tAIPG
+        defaultColdStakingAddress: 'amNziUEPyhnUkiVdfsiNX93H6rSJnios44', // Sparrow's Testnet Cold Pool
     },
 });
 // Set default chain

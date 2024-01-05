@@ -1,7 +1,7 @@
 {
-    "name": "mypivxwallet",
+    "name": "myaipgwallet",
     "version": "1.4.0",
-    "description": "Wallet for PIVX",
+    "description": "Wallet for AIPG",
     "main": "scripts/index.js",
     "type": "module",
     "scripts": {
@@ -17,19 +17,19 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/PIVX-Labs/MyPIVXWallet.git"
+        "url": "git+https://github.com/AIPowerGrid/AIPG-Web-Wallet.git"
     },
     "keywords": [
         "crypto",
-        "PIVX",
+        "AIPG",
         "wallet"
     ],
-    "author": "PIVX Labs",
+    "author": "AIPG Labs",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/PIVX-Labs/MyPIVXWallet/issues"
+        "url": "https://github.com/AIPowerGrid/AIPG-Web-Wallet/issues"
     },
-    "homepage": "https://github.com/PIVX-Labs/MyPIVXWallet#readme",
+    "homepage": "https://github.com/AIPowerGrid/AIPG-Web-Wallet#readme",
     "devDependencies": {
         "@fluent/langneg": "^0.7.0",
         "@types/lodash-es": "^4.17.6",
@@ -87,7 +87,7 @@
         "jdenticon": "^3.2.0",
         "jquery": "^3.6.3",
         "lodash-es": "^4.17.21",
-        "pivx-promos": "^0.2.0",
+        "aipg-promos": "^0.2.0",
         "qr-scanner": "^1.4.2",
         "qrcode-generator": "^1.4.4",
         "vue": "^3.3.4",

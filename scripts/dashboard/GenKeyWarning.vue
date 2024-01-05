@@ -132,7 +132,7 @@ function submit() {
             </template>
             <template #footer>
                 <button
-                    class="pivx-button-small"
+                    class="aipg-button-small"
                     @click="submit()"
                     data-testid="submitBtn"
                 >

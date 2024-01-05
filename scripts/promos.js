@@ -12,7 +12,7 @@ import { LegacyMasterKey } from './masterkey.js';
 import { deriveAddress } from './encoding.js';
 import { getP2PKHScript } from './script.js';
 
-/** The fee in Sats to use for Creating or Redeeming PIVX Promos */
+/** The fee in Sats to use for Creating or Redeeming AIPG Promos */
 export const PROMO_FEE = 10000;
 
 /**
@@ -105,7 +105,7 @@ export class PromoWallet {
 let fPromoRedeem = true;
 
 /**
- * Sets the mode of the PIVX Promos UI
+ * Sets the mode of the AIPG Promos UI
  * @param {boolean} fMode - `true` to redeem, `false` to create
  */
 export async function setPromoMode(fMode) {
@@ -203,7 +203,7 @@ const arrPromoCreationThreads = [];
 let fPromoIntervalStarted = false;
 
 /**
- * Create a new 'PIVX Promos' code with a webworker
+ * Create a new 'AIPG Promos' code with a webworker
  * @param {string} strCode - The Promo Code to create
  * @param {number} nAmount - The Promo Code amount in coins
  * @param {boolean} fAddRandomness - Whether to append Randomness to the code
@@ -411,7 +411,7 @@ export async function renderSavedPromos() {
     return { codes: arrCodes.length, html: strHTML };
 }
 
-/** Export and download all PIVX Promos data in to a CSV format */
+/** Export and download all AIPG Promos data in to a CSV format */
 export async function promosToCSV() {
     const arrCSV = [
         // Titles
@@ -618,12 +618,12 @@ export function resetRedeemPromo(nSeconds = 5) {
 }
 
 /**
- * @type {Worker?} - The thread used for the PIVX Promos redeem process
+ * @type {Worker?} - The thread used for the AIPG Promos redeem process
  */
 export let promoThread = null;
 
 /**
- * Derive a 'PIVX Promos' code with a webworker
+ * Derive a 'AIPG Promos' code with a webworker
  * @param {string} strCode - The Promo Code to derive
  */
 export async function redeemPromoCode(strCode) {
@@ -698,7 +698,7 @@ export async function redeemPromoCode(strCode) {
 }
 
 /**
- * Prompt a QR scan for a PIVX Promos code
+ * Prompt a QR scan for a AIPG Promos code
  */
 export async function openPromoQRScanner() {
     const cScan = await scanQRCode();

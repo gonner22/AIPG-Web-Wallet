@@ -552,7 +552,7 @@ defineExpose({
             </div>
             <!-- // Lock Wallet -->
 
-            <!-- Redeem Code (PIVX Promos) -->
+            <!-- Redeem Code (AIPG Promos) -->
             <div
                 class="modal"
                 id="redeemCodeModal"
@@ -583,11 +583,11 @@ defineExpose({
                         <div class="modal-body center-text">
                             <center>
                                 <p class="mono" style="font-size: small">
-                                    <b>PIVX Promos</b>
+                                    <b>AIPG Promos</b>
                                     <span
                                         style="font-family: inherit !important"
                                     >
-                                        {{ translation.pivxPromos }}
+                                        {{ translation.aipgPromos }}
                                     </span>
                                 </p>
                                 <div id="redeemCodeModeBox">
@@ -595,7 +595,7 @@ defineExpose({
                                         type="button"
                                         onclick="MPW.setPromoMode(true)"
                                         id="redeemCodeModeRedeem"
-                                        class="pivx-button-big"
+                                        class="aipg-button-big"
                                         style="
                                             margin: 0;
                                             border-top-right-radius: 0;
@@ -609,7 +609,7 @@ defineExpose({
                                         type="button"
                                         onclick="MPW.setPromoMode(false)"
                                         id="redeemCodeModeCreate"
-                                        class="pivx-button-big"
+                                        class="aipg-button-big"
                                         style="
                                             margin: 0;
                                             border-top-left-radius: 0;
@@ -801,7 +801,7 @@ defineExpose({
                                 type="button"
                                 onclick="MPW.promoConfirm()"
                                 id="redeemCodeModalConfirmButton"
-                                class="pivx-button-big"
+                                class="aipg-button-big"
                                 style="float: right"
                             >
                                 Redeem
@@ -810,7 +810,7 @@ defineExpose({
                                 type="button"
                                 data-dismiss="modal"
                                 aria-label="Close"
-                                class="pivx-button-big"
+                                class="aipg-button-big"
                                 style="float: right; opacity: 0.7"
                             >
                                 {{ translation.popupClose }}
@@ -819,7 +819,7 @@ defineExpose({
                     </div>
                 </div>
             </div>
-            <!-- // Redeem Code (PIVX Promos) -->
+            <!-- // Redeem Code (AIPG Promos) -->
 
             <!-- Contacts Modal -->
             <div
@@ -857,7 +857,7 @@ defineExpose({
                                 type="button"
                                 data-dismiss="modal"
                                 aria-label="Close"
-                                class="pivx-button-big"
+                                class="aipg-button-big"
                                 data-i18n="popupClose"
                                 style="color: #fff; float: right; opacity: 0.8"
                             >
@@ -884,7 +884,7 @@ defineExpose({
                     :isEncrypt="wallet.isEncrypted.value"
                 />
                 <div class="row p-0">
-                    <!-- Balance in PIVX & USD-->
+                    <!-- Balance in AIPG & USD-->
                     <WalletBalance
                         :balance="balance"
                         :immatureBalance="immatureBalance"

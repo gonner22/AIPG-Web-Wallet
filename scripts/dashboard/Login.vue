@@ -46,7 +46,7 @@ const { advancedMode } = toRefs(props);
                     <div class="coinstat-icon" v-html="fire"></div>
 
                     <div class="col-md-12 dashboard-title">
-                        <h3 class="pivx-bold-title" style="font-size: 38px">
+                        <h3 class="aipg-bold-title" style="font-size: 38px">
                             <span data-i18n="dCardThreeTitle">Access your</span>
                             <div data-i18n="dCardThreeSubTitle">
                                 Ledger Wallet
@@ -59,7 +59,7 @@ const { advancedMode } = toRefs(props);
                     </div>
 
                     <button
-                        class="pivx-button-big"
+                        class="aipg-button-big"
                         @click="$emit('import-wallet', { type: 'hardware' })"
                         data-testid="hardwareWalletBtn"
                     >
