@@ -38,7 +38,7 @@ export const cChainParams = reactive({
         // A list of Labs-trusted explorers
         Explorers: [
             // Display name      Blockbook-compatible API base
-            { name: 'AIPG-blockbook', url: 'https://localhost:5500' },
+            { name: 'AIPG-blockbook', url: 'https://localhost:8159' },
         ],
         Nodes: [{ name: 'Duddino', url: 'https://rpc.duddino.com/mainnet' }],
         Consensus: {
