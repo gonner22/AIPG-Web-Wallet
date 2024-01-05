@@ -1,9 +1,9 @@
 <h2 align="center">
-  Send, Stake and Receive with PIVX's most universal wallet.
+  Send, Stake and Receive with AIPG's most universal wallet.
 </h2>
 
 <p align="center">
-  <a href="https://mypivxwallet.org/">Production</a> (Stable) | <a href="https://pivx-labs.github.io/MyPIVXWallet/">Bleeding-Edge</a> (Unstable)
+  <a href="https://wallet.aipowergrid.io/">Production</a> (Stable) | <a href="https://wallet.aipowergrid.io/">Bleeding-Edge</a> (Unstable)
 </p>
 
 ---
@@ -26,7 +26,7 @@ MPW is a completely [non-custodial](https://www.bitcoin.com/get-started/custodia
 
 ## Universal and Portable
 
-MPW is completely universal and portable, at both a user-experience level & protocol-level, MPW is interopable with much of the functionality within PIVX, while also being portable enough to run on almost **any device in the world**.
+MPW is completely universal and portable, at both a user-experience level & protocol-level, MPW is interopable with much of the functionality within AIPG, while also being portable enough to run on almost **any device in the world**.
 
 <br>
 
@@ -51,9 +51,9 @@ Alongside total codebase availability, MPW allows you to totally bunker-down, wi
 
 ## By the Community, for the Community
 
-MPW is built with love by [PIVX Labs](https://github.com/PIVX-Labs), a micro-DAO of [awesome people](https://github.com/PIVX-Labs/MyPIVXWallet/graphs/contributors) that build both FOSS and Proprietary software for the PIVX community to enjoy.
+MPW is built with love by [AIPG Labs](https://github.com/AIPowerGrid), a micro-DAO of [awesome people](https://github.com/AIPowerGrid) that build both FOSS and Proprietary software for the AIPG community to enjoy.
 
-The mission of PIVX Labs is to accelerate the adoption & growth of PIVX as a currency, using awesomeness. Join the [PIVX Labs Discord](https://discord.gg/v57eCP4MMx) to meet us!
+The mission of AIPG Labs is to accelerate the adoption & growth of AIPG as a currency, using awesomeness. Join the [AIPG Labs Discord](https://discord.gg/qguaFtDR) to meet us!
 
 <br>
 
