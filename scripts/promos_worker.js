@@ -1,4 +1,4 @@
-import { PromoCode } from 'aipg-promos';
+import { PromoCode } from 'pivx-promos';
 
 // Listen for the caller giving the 'Promo Code' to derive
 onmessage = async function (evt) {
