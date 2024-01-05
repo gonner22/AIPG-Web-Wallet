@@ -40,7 +40,12 @@ export const cChainParams = reactive({
             // Display name      Blockbook-compatible API base
             { name: 'AIPG-blockbook', url: 'https://localhost:8159' },
         ],
-        Nodes: [{ name: 'Duddino', url: 'https://rpc.duddino.com/mainnet' }],
+        Nodes: [
+	    { name: 'AIPG-Node1', url: 'http://seed1-testnet.aipowergrid.io' },
+	    { name: 'AIPG-Node2', url: 'http://seed2-testnet.aipowergrid.io' },
+	    { name: 'AIPG-Node3', url: 'http://seed3-testnet.aipowergrid.io' },
+	    { name: 'AIPG-Node4', url: 'http://seed4-testnet.aipowergrid.io' },
+	],
         Consensus: {
             // Network upgrades
             UPGRADE_V6_0: undefined,
@@ -70,9 +75,12 @@ export const cChainParams = reactive({
         // A list of Labs-trusted explorers
         Explorers: [
             // Display name      Blockbook-compatible API base
-            { name: 'AIPG-blockbook', url: 'https://localhost:5500' },
+            { name: 'AIPG-blockbook', url: 'https://localhost:8159' },
         ],
-        Nodes: [{ name: 'Duddino', url: 'https://rpc.duddino.com/testnet' }],
+        Nodes: [
+	    { name: 'AIPG-TestNode1', url: 'seed1-testnet.aipowergrid.io' },
+	    { name: 'AIPG-TestNode2', url: 'seed2-testnet.aipowergrid.io' },
+	],
         Consensus: {
             // Network upgrades
             UPGRADE_V6_0: undefined,
