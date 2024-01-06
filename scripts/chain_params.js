@@ -30,21 +30,21 @@ export const cChainParams = reactive({
         STAKING_PREFIX: 'A',
         PUBKEY_ADDRESS: 23,
         STAKING_ADDRESS: 23,
-        SECRET_KEY: 212,
-        BIP44_TYPE: 119,
+        SECRET_KEY: 128,
+        BIP44_TYPE: 2686,
         BIP44_TYPE_LEDGER: 77,
         PROTOCOL_VERSION: 70926,
-        MASTERNODE_PORT: 51472,
+        MASTERNODE_PORT: 8865,
         // A list of Labs-trusted explorers
         Explorers: [
             // Display name      Blockbook-compatible API base
             { name: 'AIPG-blockbook', url: 'https://localhost:8159' },
         ],
         Nodes: [
-	    { name: 'AIPG-Node1', url: 'http://seed1.aipowergrid.io' },
-	    { name: 'AIPG-Node2', url: 'http://seed2.aipowergrid.io' },
-	    { name: 'AIPG-Node3', url: 'http://seed3.aipowergrid.io' },
-	    { name: 'AIPG-Node4', url: 'http://seed4.aipowergrid.io' },
+	    { name: 'AIPG-Node1', url: 'https://seed1.aipowergrid.io' },
+	    { name: 'AIPG-Node2', url: 'https://seed2.aipowergrid.io' },
+	    { name: 'AIPG-Node3', url: 'https://seed3.aipowergrid.io' },
+	    { name: 'AIPG-Node4', url: 'https://seed4.aipowergrid.io' },
 	],
         Consensus: {
             // Network upgrades
@@ -71,7 +71,7 @@ export const cChainParams = reactive({
         BIP44_TYPE: 1,
         BIP44_TYPE_LEDGER: 1,
         PROTOCOL_VERSION: 70926,
-        MASTERNODE_PORT: 51474,
+        MASTERNODE_PORT: 18865,
         // A list of Labs-trusted explorers
         Explorers: [
             // Display name      Blockbook-compatible API base
