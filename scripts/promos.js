@@ -415,7 +415,7 @@ export async function renderSavedPromos() {
 export async function promosToCSV() {
     const arrCSV = [
         // Titles
-        ['Promo Code', 'PIV (Remaining)', 'Funding Address'],
+        ['Promo Code', 'AIPG (Remaining)', 'Funding Address'],
         // Content
     ];
 

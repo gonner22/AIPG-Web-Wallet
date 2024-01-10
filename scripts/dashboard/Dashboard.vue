@@ -266,7 +266,7 @@ async function lockWallet() {
 /**
  * Sends a transaction
  * @param {string} address - Address or contact to send to
- * @param {number} amount - Amount of PIVs to send
+ * @param {number} amount - Amount of AIPGs to send
  */
 async function send(address, amount) {
     // Ensure a wallet is unlocked

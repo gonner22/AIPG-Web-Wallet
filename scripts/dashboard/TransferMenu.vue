@@ -13,7 +13,7 @@ const emit = defineEmits([
     'update:amount',
     'update:address',
 ]);
-// Amount of PIVs to send in the selected currency (e.g. USD)
+// Amount of AIPGs to send in the selected currency (e.g. USD)
 const amountCurrency = ref('');
 const color = ref('');
 
