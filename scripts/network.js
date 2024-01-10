@@ -86,7 +86,7 @@ export class Network {
 
     getFee(bytes) {
         // TEMPORARY: Hardcoded fee per-byte
-        return bytes * 50; // 50 sat/byte
+        return bytes * 4350; // 50 sat/byte
     }
 
     get cachedBlockCount() {

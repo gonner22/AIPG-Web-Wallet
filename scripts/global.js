@@ -78,7 +78,6 @@ export async function start() {
         ),
         domStakeOwnerAddress: document.getElementById('delegateOwnerAddress'),
         domUnstakeAmount: document.getElementById('undelegateAmount'),
-        domStakeTab: document.getElementById('stakeTab'),
         domStakeAmountCoinsTicker: document.getElementById(
             'stakeAmountCoinsTicker'
         ),

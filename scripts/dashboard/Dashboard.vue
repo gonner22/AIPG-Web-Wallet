@@ -328,16 +328,6 @@ async function send(address, amount) {
         address = cReceiverWallet.getAddress(strPath);
     }
 
-    // If Staking address: redirect to staking page
-    if (isColdAddress(address)) {
-        createAlert('warning', ALERTS.STAKE_NOT_SEND, 7500);
-        // Close the current Send Popup
-        showTransferMenu.value = false;
-        // Open the Staking Dashboard
-        // TODO: when write stake page rewrite this as an event
-        return doms.domStakeTab.click();
-    }
-
     // Check if the Receiver Address is a valid P2PKH address
     if (!isStandardAddress(address))
         return createAlert(
