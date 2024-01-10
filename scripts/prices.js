@@ -7,7 +7,7 @@ import { cMarket, fillCurrencySelect } from './settings.js';
  * - No localisation, tickers, community data, developer data or sparklines
  */
 export const COINGECKO_ENDPOINT =
-    'https://api.coingecko.com/api/v3/coins/pivx?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false';
+    'https://api.coingecko.com/api/v3/coins/ai-power-grid?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false';
 
 /**
  * The generic market data source template, used to build site-specific classes
