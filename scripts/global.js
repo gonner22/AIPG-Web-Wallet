@@ -109,34 +109,6 @@ export async function start() {
             'walletBreakdownCanvas'
         ),
         domGenHardwareWallet: document.getElementById('generateHardwareWallet'),
-        //GOVERNANCE ELEMENTS
-        domGovTab: document.getElementById('governanceTab'),
-        domGovProposalsTable: document.getElementById('proposalsTable'),
-        domGovProposalsTableBody: document.getElementById('proposalsTableBody'),
-        domTotalGovernanceBudget: document.getElementById(
-            'totalGovernanceBudget'
-        ),
-        domTotalGovernanceBudgetValue: document.getElementById(
-            'totalGovernanceBudgetValue'
-        ),
-        domAllocatedGovernanceBudget: document.getElementById(
-            'allocatedGovernanceBudget'
-        ),
-        domAllocatedGovernanceBudgetValue: document.getElementById(
-            'allocatedGovernanceBudgetValue'
-        ),
-        domAllocatedGovernanceBudget2: document.getElementById(
-            'allocatedGovernanceBudget2'
-        ),
-        domAllocatedGovernanceBudgetValue2: document.getElementById(
-            'allocatedGovernanceBudgetValue2'
-        ),
-        domGovProposalsContestedTable: document.getElementById(
-            'proposalsContestedTable'
-        ),
-        domGovProposalsContestedTableBody: document.getElementById(
-            'proposalsContestedTableBody'
-        ),
         //MASTERNODE ELEMENTS
         domCreateMasternode: document.getElementById('createMasternode'),
         domControlMasternode: document.getElementById('controlMasternode'),
@@ -384,11 +356,6 @@ function subscribeToNetworkEvents() {
         console.log(`New block detected! ${oldBlock} --> ${block}`);
         // Fetch latest Activity
         stakingDashboard.update();
-
-        // If it's open: update the Governance Dashboard
-        if (doms.domGovTab.classList.contains('active')) {
-            updateGovernanceTab();
-        }
     });
 
     getEventEmitter().on('transaction-sent', (success, result) => {
