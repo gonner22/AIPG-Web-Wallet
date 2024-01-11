@@ -2,15 +2,13 @@
   Send, Stake and Receive with AIPG's most universal wallet.
 </h2>
 
-<p align="center">
-  <a href="https://wallet.aipowergrid.io/">Production</a> (Stable) | <a href="https://wallet.aipowergrid.io/">Bleeding-Edge</a> (Unstable)
-</p>
 
 ---
 
 <br>
 
-<img align="left" src="https://pivx.org/build/images/content/img_governance.png" width="150">
+<img align="left" src="![paperwallet](https://github.com/AI-Power-Grid/AIPG-Web-Wallet/assets/14795932/8e444bd4-cf94-479a-af14-3b24e07ce988)
+" width="150">
 
 ## Be your own Bank
 
