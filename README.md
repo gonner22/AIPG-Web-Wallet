@@ -7,12 +7,11 @@
 
 <br>
 
-<img align="left" src="![paperwallet](https://github.com/AI-Power-Grid/AIPG-Web-Wallet/assets/14795932/8e444bd4-cf94-479a-af14-3b24e07ce988)
-" width="150">
+<img align="left" src="https://aipowergrid.io/paperwallet.png" width="150">
 
 ## Be your own Bank
 
-MPW is a completely [non-custodial](https://www.bitcoin.com/get-started/custodial-non-custodial-bitcoin-wallets/), client-side system, giving you absolute control over your funds, data, bandwidth and privacy... all of which are essential to easily-attainable **self-sovereignty**.
+AIPG-Web-Wallet is a completely [non-custodial](https://www.bitcoin.com/get-started/custodial-non-custodial-bitcoin-wallets/), client-side system, giving you absolute control over your funds, data, bandwidth and privacy... all of which are essential to easily-attainable **self-sovereignty**.
 
 <br>
 
