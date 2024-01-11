@@ -1,5 +1,5 @@
 <h2 align="center">
-  Send and Receive with AIPG's most universal wallet.
+  Send and Receive with AIPG's web wallet.
 </h2>
 
 
