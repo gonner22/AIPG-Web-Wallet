@@ -44,12 +44,4 @@ AIPG-Web-Wallet is completely free, open-source software ([FOSS](https://en.wiki
 <br>
 
 
-## By the Community, for the Community
-
-MPW is built with love by [AIPG Labs](https://github.com/AIPowerGrid), a micro-DAO of [awesome people](https://github.com/AIPowerGrid) that build both FOSS and Proprietary software for the AIPG community to enjoy.
-
-The mission of AIPG Labs is to accelerate the adoption & growth of AIPG as a currency, using awesomeness. Join the [AIPG Labs Discord](https://discord.gg/qguaFtDR) to meet us!
-
-<br>
-
 ---
