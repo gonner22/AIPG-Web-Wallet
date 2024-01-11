@@ -19,7 +19,7 @@ AIPG-Web-Wallet is a completely [non-custodial](https://www.bitcoin.com/get-star
 
 <br>
 
-<img align="left" src="https://pivx.org/build/images/content/img_pos.png" width="150">
+<img align="left" src="https://aipowergrid.io/paperwallet.png" width="150">
 
 ## Universal and Portable
 
@@ -31,7 +31,7 @@ MPW is completely universal and portable, at both a user-experience level & prot
 
 <br>
 
-<img align="left" src="https://pivx.org/build/images/content/img_privacy.png" width="150">
+<img align="left" src="https://aipowergrid.io/paperwallet.png" width="150">
 
 ## Don't trust, Verify!
 
@@ -44,7 +44,6 @@ Alongside total codebase availability, MPW allows you to totally bunker-down, wi
 
 <br>
 
-<img align="left" src="https://pivx.org/build/images/content/img_slider_bars.png" width="150">
 
 ## By the Community, for the Community
 
