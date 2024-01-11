@@ -1,5 +1,5 @@
 <h2 align="center">
-  Send, Stake and Receive with AIPG's most universal wallet.
+  Send and Receive with AIPG's most universal wallet.
 </h2>
 
 
