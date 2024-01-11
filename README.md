@@ -23,7 +23,7 @@ AIPG-Web-Wallet is a completely [non-custodial](https://www.bitcoin.com/get-star
 
 ## Universal and Portable
 
-MPW is completely universal and portable, at both a user-experience level & protocol-level, MPW is interopable with much of the functionality within AIPG, while also being portable enough to run on almost **any device in the world**.
+AIPG-Web-Wallet is completely universal and portable, at both a user-experience level & protocol-level, MPW is interopable with much of the functionality within AIPG, while also being portable enough to run on almost **any device in the world**.
 
 <br>
 
@@ -35,8 +35,7 @@ MPW is completely universal and portable, at both a user-experience level & prot
 
 ## Don't trust, Verify!
 
-MPW is completely free, open-source software ([FOSS](https://en.wikipedia.org/wiki/Free_and_open-source_software)), with absolute transparency in security, features, down to every letter of code.<br>
-Alongside total codebase availability, MPW allows you to totally bunker-down, with the ability to customize your experience in accordance to your [principles](https://en.wikipedia.org/wiki/Free_and_open-source_software#Four_essential_freedoms_of_Free_Software) & security desires.
+AIPG-Web-Wallet is completely free, open-source software ([FOSS](https://en.wikipedia.org/wiki/Free_and_open-source_software)), with absolute transparency in security, features, down to every letter of code.
 
 <br>
 
