@@ -1,4 +1,4 @@
-/* istanbul ignore file */
+/* istanbul ignore file */ 
 /* eslint-env node */
 /* eslint @typescript-eslint/no-var-requires: "off" */
 

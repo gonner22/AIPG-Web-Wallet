@@ -43,7 +43,7 @@ describe('database tests', () => {
             'prop2',
         ]);
 
-        // Setting localProposals as empty doesn't overwrite the array
+        // Setting localProposals as empty doesn't overwrite the array 
         await db.updateAccount(
             new Account({
                 encWif: 'newWIF2!',
