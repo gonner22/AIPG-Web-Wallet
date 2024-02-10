@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkMPW=self.webpackChunkMPW||[]).push([[771],{27771:(e,p,s)=>{e.exports=s.p+"23b89fea6af6b70e7edf.png"}}]);
