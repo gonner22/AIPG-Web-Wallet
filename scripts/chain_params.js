@@ -38,7 +38,7 @@ export const cChainParams = reactive({
         // A list of Labs-trusted explorers
         Explorers: [
             // Display name      Blockbook-compatible API base
-            { name: 'AIPG-blockbook', url: 'https://localhost' },
+            { name: 'AIPG-blockbook', url: 'https://blockbook.aipowergrid.io:8159' },
         ],
         Nodes: [
 	    { name: 'AIPG-Node1', url: 'https://seed1.aipowergrid.io' },
@@ -75,7 +75,7 @@ export const cChainParams = reactive({
         // A list of Labs-trusted explorers
         Explorers: [
             // Display name      Blockbook-compatible API base
-            { name: 'AIPG-blockbook', url: 'https://localhost' },
+            { name: 'AIPG-blockbook', url: 'https://blockbook.aipowergrid.io:8189' },
         ],
         Nodes: [
 	    { name: 'AIPG-TestNode1', url: 'seed1-testnet.aipowergrid.io' },
