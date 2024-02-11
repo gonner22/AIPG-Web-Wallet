@@ -7,7 +7,7 @@
 
 <br>
 
-<img align="left" src="https://aipowergrid.io/paperwallet.png" width="150">
+<img align="left" src="https://aipowergrid.io/wallet-icons/276_paperwallet_324x324.png" width="150">
 
 ## Be your own Bank
 
@@ -19,7 +19,7 @@ AIPG-Web-Wallet is a completely [non-custodial](https://www.bitcoin.com/get-star
 
 <br>
 
-<img align="left" src="https://aipowergrid.io/paperwallet.png" width="150">
+<img align="left" src="https://aipowergrid.io/wallet-icons/276_paperwallet_324x324.png" width="150">
 
 ## Universal and Portable
 
@@ -31,7 +31,7 @@ AIPG-Web-Wallet is completely universal and portable, at both a user-experience 
 
 <br>
 
-<img align="left" src="https://aipowergrid.io/paperwallet.png" width="150">
+<img align="left" src="https://aipowergrid.io/wallet-icons/276_paperwallet_324x324.png" width="150">
 
 ## Don't trust, Verify!
 
