@@ -86,7 +86,7 @@ function importWallet() {
                     <input
                         v-model="secret"
                         :type="cloakSecret ? 'password' : 'text'"
-                        placeholder="Seed Phrase, XPriv or WIF Private Key"
+                        placeholder="XPriv"
                         data-testid="secretInp"
                     />
                     <input
