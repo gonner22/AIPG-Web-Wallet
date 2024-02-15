@@ -41,10 +41,11 @@ export const cChainParams = reactive({
             { name: 'AIPG-blockbook', url: 'https://blockbook.aipowergrid.io' },
         ],
         Nodes: [
-	    { name: 'AIPG-Node1', url: 'https://seed1.aipowergrid.io' },
-	    { name: 'AIPG-Node2', url: 'https://seed2.aipowergrid.io' },
-	    { name: 'AIPG-Node3', url: 'https://seed3.aipowergrid.io' },
-	    { name: 'AIPG-Node4', url: 'https://seed4.aipowergrid.io' },
+	    { name: 'AIPG-US', url: 'https://us-seed1.aipowergrid.io' },
+	    { name: 'AIPG-Japan', url: 'https://jp-seed2.aipowergrid.io' },
+	    { name: 'AIPG-Australia', url: 'https://au-seed3.aipowergrid.io' },
+	    { name: 'AIPG-Europe', url: 'https://eu-seed4.aipowergrid.io' },
+	    { name: 'AIPG-India', url: 'https://in-seed4.aipowergrid.io' },
 	],
         Consensus: {
             // Network upgrades
