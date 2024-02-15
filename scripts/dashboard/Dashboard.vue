@@ -506,7 +506,7 @@ defineExpose({
             </div>
             <!-- // Unlock Wallet -->
 
-            <!-- Lock wallet -->
+            <!-- Lock Wallet -->
             <div
                 class="col-12"
                 v-if="
