@@ -7,10 +7,9 @@
 
 <br>
 
-<<<<<<< HEAD
 =======
 <img align="left" src="https://aipowergrid.io/wallet-icons/276_paperwallet_324x324.png" width="150">
->>>>>>> 655b2b13f3e88d5786de7dedc3ca9f7c87561e89
+
 
 ## Be your own Bank
 
