@@ -568,25 +568,25 @@ async function loadImages() {
     await Promise.all(promises);
 }
 
-let audio = null;
-export async function playMusic() {
-    // On first play: load the audio into memory from the host
-    if (audio === null) {
-        // Dynamically load the file
-        audio = new Audio((await import('../assets/music.mp3')).default);
-    }
+// let audio = null;
+// export async function playMusic() {
+//     // On first play: load the audio into memory from the host
+//     if (audio === null) {
+//         // Dynamically load the file
+//         audio = new Audio((await import('../assets/music.mp3')).default);
+//     }
 
-    // Play or Pause
-    if (audio.paused || audio.ended) {
-        audio.play();
-        for (const domImg of document.getElementsByTagName('img'))
-            domImg.classList.add('discoFilter');
-    } else {
-        audio.pause();
-        for (const domImg of document.getElementsByTagName('img'))
-            domImg.classList.remove('discoFilter');
-    }
-}
+//     // Play or Pause
+//     if (audio.paused || audio.ended) {
+//         audio.play();
+//         for (const domImg of document.getElementsByTagName('img'))
+//             domImg.classList.add('discoFilter');
+//     } else {
+//         audio.pause();
+//         for (const domImg of document.getElementsByTagName('img'))
+//             domImg.classList.remove('discoFilter');
+//     }
+// }
 
 export function toggleBottomMenu(dom, ani) {
     let element = document.getElementById(dom);
