@@ -38,14 +38,14 @@ export const cChainParams = reactive({
         // A list of Labs-trusted explorers
         Explorers: [
             // Display name      Blockbook-compatible API base
-            { name: 'AIPG-blockbook', url: 'https://blockbook.aipowergrid.io' },
+            { name: 'AIPG BlockBook', url: 'https://blockbook.aipowergrid.io' },
         ],
         Nodes: [
-	    { name: 'AIPG-US', url: 'https://us-seed1.aipowergrid.io' },
-	    { name: 'AIPG-Japan', url: 'https://jp-seed2.aipowergrid.io' },
-	    { name: 'AIPG-Australia', url: 'https://au-seed3.aipowergrid.io' },
-	    { name: 'AIPG-Europe', url: 'https://eu-seed4.aipowergrid.io' },
-	    { name: 'AIPG-India', url: 'https://in-seed4.aipowergrid.io' },
+	    { name: 'AIPG US', url: 'https://us-seed1.aipowergrid.io' },
+	    { name: 'AIPG Japan', url: 'https://jp-seed2.aipowergrid.io' },
+	    { name: 'AIPG Australia', url: 'https://au-seed3.aipowergrid.io' },
+	    { name: 'AIPG Europe', url: 'https://eu-seed4.aipowergrid.io' },
+	    { name: 'AIPG India', url: 'https://in-seed4.aipowergrid.io' },
 	],
         Consensus: {
             // Network upgrades
@@ -76,11 +76,11 @@ export const cChainParams = reactive({
         // A list of Labs-trusted explorers
         Explorers: [
             // Display name      Blockbook-compatible API base
-            { name: 'AIPG-blockbook', url: 'https://blockbook.aipowergrid.io' },
+            { name: 'AIPG Blockbook', url: 'https://blockbook.aipowergrid.io' },
         ],
         Nodes: [
-	    { name: 'AIPG-TestNode1', url: 'seed1-testnet.aipowergrid.io' },
-	    { name: 'AIPG-TestNode2', url: 'seed2-testnet.aipowergrid.io' },
+	    { name: 'AIPG TestNode1', url: 'seed1-testnet.aipowergrid.io' },
+	    { name: 'AIPG TestNode2', url: 'seed2-testnet.aipowergrid.io' },
 	],
         Consensus: {
             // Network upgrades

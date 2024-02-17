@@ -2331,7 +2331,7 @@ a {
   background-color: rgba(255, 255, 255, 12%);
   display: flex;
   line-height: 18px;
-  background: radial-gradient(45vw 80% at 90% 40%, rgb(223 185 255 / 10%), rgba(100, 100, 100, 0) 95%), linear-gradient(52deg, rgb(100 100 100 / 0%), #80808000 60%, rgb(100 100 100 / 0%)), linear-gradient(35deg, hsl(0deg 0% 80% / 28%), rgb(200 200 200 / 15%) 37%, rgb(180 180 180 / 45%) 0, rgb(190 190 190 / 25%) 76%, rgb(170 170 170 / 22%) 0, rgb(210 210 210 / 34%)), linear-gradient(90deg, rgb(100 100 100 / 12%), #80808000 60%, #64646400);
+  background: radial-gradient(circle at 90% 40%, rgb(223 185 255 / 10%) 0%, rgb(180 180 180 / 30%) 50%, rgba(100, 100, 100, 0) 95%), linear-gradient(52deg, rgb(100 100 100 / 0%) 0%, #80808000 60%, rgb(100 100 100 / 0%) 100%), linear-gradient(35deg, hsl(0deg 0% 80% / 28%) 0%, rgb(200 200 200 / 15%) 37%, rgb(180 180 180 / 45%) 50%, rgb(190 190 190 / 25%) 76%, rgb(170 170 170 / 22%) 87%, rgb(210 210 210 / 34%) 100%), linear-gradient(90deg, rgb(100 100 100 / 12%) 0%, #80808000 60%, #64646400 100%);
 }
 
 .dcWallet-warningMessage .shieldLogo {
@@ -2491,7 +2491,7 @@ input {
     border-radius: 24px;
     border-top-left-radius: 7px;
     border-bottom-right-radius: 7px;
-    background-image: linear-gradient(183deg, #5a5a5a, #6d6d6d);
+    background-image: linear-gradient(183deg, #3d3d3d, #3a3a3a);
     cursor: pointer;
 }
 
