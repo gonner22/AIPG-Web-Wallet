@@ -21,7 +21,6 @@ export {
     toClipboard,
     restoreWallet,
     refreshChainData,
-    playMusic,
     selectMaxBalance,
     openExplorer,
     doms,

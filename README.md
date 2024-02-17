@@ -10,7 +10,6 @@
 
 <br>
 
-<img align="left" src="https://pivx.org/build/images/content/img_governance.png" width="150">
 
 ## Be your own Bank
 
@@ -51,7 +50,7 @@ Alongside total codebase availability, MPW allows you to totally bunker-down, wi
 
 ## By the Community, for the Community
 
-MPW is built with love by [AIPG Labs](https://github.com/AIPowerGrid), a micro-DAO of [awesome people](https://github.com/AIPowerGrid) that build both FOSS and Proprietary software for the AIPG community to enjoy.
+MPW is built by [AIPG Labs](https://github.com/AIPowerGrid), a micro-DAO of [awesome people](https://github.com/AIPowerGrid) that build both FOSS and Proprietary software for the AIPG community to enjoy.
 
 The mission of AIPG Labs is to accelerate the adoption & growth of AIPG as a currency, using awesomeness. Join the [AIPG Labs Discord](https://discord.gg/qguaFtDR) to meet us!
 

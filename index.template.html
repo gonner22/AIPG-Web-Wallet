@@ -30,8 +30,8 @@
     <meta property="twitter:image" content="/logo_opaque-dark-bg.png" />
 
     <!-- Colour Theme -->
-    <meta name="msapplication-TileColor" content="#470e75" />
-    <meta name="theme-color" content="#470e75" />
+    <meta name="msapplication-TileColor" content="#d3d3d3" />
+    <meta name="theme-color" content="#d3d3d3" />
 
     <link rel="icon" type="image/png" href="/logo_opaque-dark-bg.png" />
     <link rel="canonical" href="https://wallet.aipowergrid.io/" />
@@ -87,7 +87,7 @@
                 <code id="ModalQRLabel" class="wallet-code"></code>
                 <div id="ModalQR" style="padding: 17px 10px 10px 10px;" class="auto-fit"></div>
                 <center>
-                  <div id="ModalQRReceiveTypeBtn" onclick="MPW.guiToggleReceiveType()" style="cursor: pointer; border: 0px; border-radius: 7px; padding: 6px 10px; margin: 0px 1px; background: linear-gradient(183deg, #9621ff9c, #7d21ffc7); color: #fff; font-weight: bold; width: fit-content; margin: 20px 0px;">
+                  <div id="ModalQRReceiveTypeBtn" onclick="MPW.guiToggleReceiveType()" style="cursor: pointer; border: 0px; border-radius: 7px; padding: 6px 10px; margin: 0px 1px; background: linear-gradient(183deg, #1b1b1b9c, #2b2b2bc7); color: #fff; font-weight: bold; width: fit-content; margin: 20px 0px;">
                     Change to Address
                   </div>
                 </center>
@@ -136,7 +136,7 @@
           <div id="confirmModalDialog" class="modal-dialog modal-dialog-centered max-w-600" role="document">
             <div id="confirmModalMain" class="modal-content">
               <div class="modal-header" id="confirmModalHeader">
-                <h3 class="modal-title" id="confirmModalTitle" style="text-align: center; width: 100%; color: #8e21ff;"></h3>
+                <h3 class="modal-title" id="confirmModalTitle" style="text-align: center; width: 100%; color: #1f1f1f;"></h3>
               </div>
               <div id="confirmModalContent" class="modal-body center-text">
                 <!-- JS populated modal content -->
@@ -265,7 +265,7 @@
                           <input class="btn-group-input" style="padding-right: 0px;" type="number" id="undelegateAmount" placeholder="0.00" autocomplete="nope" onkeydown="javascript: return event.keyCode == 69 ? false : true" />
                           <div class="input-group-append">
                             <span class="input-group-text p-0">
-                              <div data-i18n="sendAmountCoinsMax" onclick="MPW.selectMaxBalance(MPW.doms.domUnstakeAmount, MPW.doms.domUnstakeAmountValue, true)" style="cursor: pointer; border: 0px; border-radius: 7px; padding: 3px 6px; margin: 0px 1px; background: linear-gradient(183deg, #9621ff9c, #7d21ffc7); color: #fff; font-weight: bold;">
+                              <div data-i18n="sendAmountCoinsMax" onclick="MPW.selectMaxBalance(MPW.doms.domUnstakeAmount, MPW.doms.domUnstakeAmountValue, true)" style="cursor: pointer; border: 0px; border-radius: 7px; padding: 3px 6px; margin: 0px 1px; background: linear-gradient(183deg, #3a3a3a9c, #272727c7); color: #fff; font-weight: bold;">
                                 MAX
                               </div>
                             </span>
@@ -309,7 +309,7 @@
                           <input class="btn-group-input" style="padding-right: 0px;" type="number" id="delegateAmount" placeholder="0.00" autocomplete="nope" onkeydown="javascript: return event.keyCode == 69 ? false : true" />
                           <div class="input-group-append">
                             <span class="input-group-text p-0">
-                              <div data-i18n="sendAmountCoinsMax" onclick="MPW.selectMaxBalance(MPW.doms.domStakeAmount, MPW.doms.domStakeAmountValue)" style="cursor: pointer; border: 0px; border-radius: 7px; padding: 3px 6px; margin: 0px 1px; background: linear-gradient(183deg, #9621ff9c, #7d21ffc7); color: #fff; font-weight: bold;">
+                              <div data-i18n="sendAmountCoinsMax" onclick="MPW.selectMaxBalance(MPW.doms.domStakeAmount, MPW.doms.domStakeAmountValue)" style="cursor: pointer; border: 0px; border-radius: 7px; padding: 3px 6px; margin: 0px 1px; background: linear-gradient(183deg, #3838389c, #272727c7); color: #fff; font-weight: bold;">
                                 MAX
                               </div>
                             </span>
@@ -359,8 +359,8 @@
                   <div class="col-6 col-lg-3 text-center governBudgetCard">
                     <span data-i18n="govMonthlyBudget" style="font-weight:800; color:#cac9d2;">Monthly Budget</span>
 
-                    <div style="background-color:hsl(273 79% 27% / 1); margin-top:11px; border-radius: 9px; width: fit-content; padding-left: 13px; padding-right: 13px; padding-bottom: 10px; padding-top: 9px;">
-                      <span style="font-size: 23px;"><span id="totalGovernanceBudget">-</span> <span style="color:#8b38ff;">AIPG</span></span>
+                    <div style="background-color:hsl(0, 0%, 37%); margin-top:11px; border-radius: 9px; width: fit-content; padding-left: 13px; padding-right: 13px; padding-bottom: 10px; padding-top: 9px;">
+                      <span style="font-size: 23px;"><span id="totalGovernanceBudget">-</span> <span style="color:#1a1a1a;">AIPG</span></span>
                       <hr style="background-color:#ffffff33; margin-top:2px; margin-bottom:2px;">
                       <span style="font-size: 16px;"><span id="totalGovernanceBudgetValue">-</span></span>
                     </div>
@@ -368,8 +368,8 @@
                   <div class="col-6 col-lg-3 text-center governBudgetCard for-mobile">
                     <span data-i18n="govAllocBudget" style="font-weight:800; color:#cac9d2;">Budget Allocated</span>
 
-                    <div style="background-color:hsl(273 79% 23% / 1); margin-top:11px; border-radius: 9px; width: fit-content; padding-left: 13px; padding-right: 13px; padding-bottom: 10px; padding-top: 9px;">
-                      <span style="font-size: 23px;"><span id="allocatedGovernanceBudget">-</span> <span style="color:#8b38ff;">AIPG</span></span>
+                    <div style="background-color:hsl(0, 0%, 33%); margin-top:11px; border-radius: 9px; width: fit-content; padding-left: 13px; padding-right: 13px; padding-bottom: 10px; padding-top: 9px;">
+                      <span style="font-size: 23px;"><span id="allocatedGovernanceBudget">-</span> <span style="color:#1a1a1a;">AIPG</span></span>
                       <hr style="background-color:#ffffff33; margin-top:2px; margin-bottom:2px;">
                       <span style="font-size: 16px;"><span id="allocatedGovernanceBudgetValue">-</span>
                     </div>
@@ -381,8 +381,8 @@
                   <div class="col-12 col-lg-3 text-center governBudgetCard for-desktop">
                     <span data-i18n="govAllocBudget" style="font-weight:800; color:#cac9d2;">Budget Allocated</span>
 
-                    <div style="background-color:hsl(273 79% 23% / 1); margin-top:11px; border-radius: 9px; width: fit-content; padding-left: 13px; padding-right: 13px; padding-bottom: 10px; padding-top: 9px;">
-                      <span style="font-size: 23px;"><span id="allocatedGovernanceBudget2">-</span> <span style="color:#8b38ff;">AIPG</span></span>
+                    <div style="background-color:hsl(0, 0%, 32%); margin-top:11px; border-radius: 9px; width: fit-content; padding-left: 13px; padding-right: 13px; padding-bottom: 10px; padding-top: 9px;">
+                      <span style="font-size: 23px;"><span id="allocatedGovernanceBudget2">-</span> <span style="color:#1d1d1d;">AIPG</span></span>
                       <hr style="background-color:#ffffff33; margin-top:2px; margin-bottom:2px;">
                       <span style="font-size: 16px;"><span id="allocatedGovernanceBudgetValue2">-</span>
                     </div>
@@ -480,11 +480,11 @@
 
                 <div id="mnDashboard" class="staking-banner-bottom">
                   <div class="stake-box large-box col-md-4">
-                    <h4 class="stake-balances" style="background-color: #2c0044; border-radius: 10px;">Status <small id="mnProtocol" style="opacity: 0.5;"></small></h4>
+                    <h4 class="stake-balances" style="background-color: #707070; border-radius: 10px;">Status <small id="mnProtocol" style="opacity: 0.5;"></small></h4>
                     <h2 id="mnStatus" class="stake-balances" style="overflow-wrap: anywhere; top: 50%; left: 50%; transform: translate(-50%, -50%); position: absolute; width: 100%; padding: 10px;" id="mnStatus"></h2>
                   </div>
                   <div class="stake-box large-box col-md-4">
-                    <h4 id="mnNetType" class="stake-balances" style="background-color: #2c0044; border-radius: 10px;"></h4>
+                    <h4 id="mnNetType" class="stake-balances" style="background-color: #4e4e4e; border-radius: 10px;"></h4>
                     <h2
                       id="mnNetIP"
                       class="stake-balances"
@@ -493,7 +493,7 @@
                     ></h2>
                   </div>
                   <div class="stake-box large-box col-md-4">
-                    <h4 class="stake-balances" style="background-color: #2c0044; border-radius: 10px;">
+                    <h4 class="stake-balances" style="background-color: #535353; border-radius: 10px;">
                       Last Seen
                     </h4>
                     <h2 id="mnLastSeen" class="stake-balances" style="overflow-wrap: anywhere; top: 50%; left: 50%; transform: translate(-50%, -50%); position: absolute; width: 100%; padding: 10px; font-size: xx-large;" id="mnStatus"></h2>
@@ -562,13 +562,13 @@
                       <hr>
                       <div id="changePassword-container">
 
-                        <div id="changePasswordBtn" onclick="MPW.changePassword()" style="cursor: pointer; border: 0px; border-radius: 7px; padding: 6px 10px; margin: 0px 1px; background: linear-gradient(183deg, #9621ff9c, #7d21ffc7); color: #fff; font-weight: bold; width: fit-content; margin: 20px 0px;">
+                        <div id="changePasswordBtn" onclick="MPW.changePassword()" style="cursor: pointer; border: 0px; border-radius: 7px; padding: 6px 10px; margin: 0px 1px; background: linear-gradient(183deg, #3636369c, #222222c7); color: #fff; font-weight: bold; width: fit-content; margin: 20px 0px;">
                           Change Password
                         </div>
                         <hr>
                       </div>
                       <div id="logOut-container">
-                        <div onclick="MPW.logOut()" style="cursor: pointer; border: 0px; border-radius: 7px; padding: 6px 10px; margin: 0px 1px; background: linear-gradient(183deg, #9621ff9c, #7d21ffc7); color: #fff; font-weight: bold; width: fit-content; margin: 20px 0px;">
+                        <div onclick="MPW.logOut()" style="cursor: pointer; border: 0px; border-radius: 7px; padding: 6px 10px; margin: 0px 1px; background: linear-gradient(183deg, #2424249c, #202020c7); color: #fff; font-weight: bold; width: fit-content; margin: 20px 0px;">
                           Delete Wallet
                         </div>
                         <hr>
@@ -629,8 +629,8 @@
       <footer id="foot">
         <div class="footer">
           <div>
-            <span> © MIT 2024 </span> - <span style="cursor: pointer;" onclick="MPW.playMusic()" data-i18n="footerBuiltWithAIPGLabs">Built with 💜 by AIPG</span><br />
-            <a href="https://github.com/AIPowerGrid/AIPG-Web-Wallet" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></i></a> - <a href="https://discord.gg/vZ9XrTSRYr" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-discord"></i></i></a> - <a href="https://medium.com" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-medium"></i></i></a> - <span id="version" class="ptr" onclick="MPW.renderChangelog();"></span>
+            <span> © MIT 2024 </span> - <span>Built by AI Power Grid</span><br />
+            <a href="https://github.com/AIPowerGrid/AIPG-Web-Wallet" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></i></a> - <a href="https://discord.gg/vZ9XrTSRYr" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-discord"></i></i></a> -  <span id="version" class="ptr" onclick="MPW.renderChangelog();"></span>
           </div>
         </div>
       </footer>
@@ -640,3 +640,4 @@
     <div id="app"></div>
   </body>
 </html>
+
