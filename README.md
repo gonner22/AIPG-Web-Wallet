@@ -7,10 +7,8 @@
 
 <br>
 
-<<<<<<< HEAD
-=======
 <img align="left" src="https://aipowergrid.io/wallet-icons/276_paperwallet_324x324.png" width="150">
->>>>>>> 655b2b13f3e88d5786de7dedc3ca9f7c87561e89
+
 
 ## Be your own Bank
 
@@ -46,8 +44,7 @@ AIPG-Web-Wallet is completely free, open-source software ([FOSS](https://en.wiki
 
 <br>
 
-<<<<<<< HEAD
-<img align="left" src="https://pivx.org/build/images/content/img_slider_bars.png" width="150">
+<img align="left" src="https://aipowergrid.io/wallet-icons/276_paperwallet_324x324.png" width="150">
 
 ## By the Community, for the Community
 
@@ -56,7 +53,5 @@ MPW is built by [AIPG Labs](https://github.com/AIPowerGrid), a micro-DAO of [awe
 The mission of AIPG Labs is to accelerate the adoption & growth of AIPG as a currency, using awesomeness. Join the [AIPG Labs Discord](https://discord.gg/qguaFtDR) to meet us!
 
 <br>
-=======
->>>>>>> 655b2b13f3e88d5786de7dedc3ca9f7c87561e89
 
 ---
