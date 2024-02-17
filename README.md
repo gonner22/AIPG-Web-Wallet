@@ -44,7 +44,7 @@ AIPG-Web-Wallet is completely free, open-source software ([FOSS](https://en.wiki
 
 <br>
 
-<img align="left" src="https://pivx.org/build/images/content/img_slider_bars.png" width="150">
+<img align="left" src="https://aipowergrid.io/wallet-icons/276_paperwallet_324x324.png" width="150">
 
 ## By the Community, for the Community
 
