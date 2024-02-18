@@ -577,6 +577,13 @@
                       <!-- Default switch -->
 
                       <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="debugToggler" onclick="MPW.toggleDebug()">
+                        <label data-i18n="settingsToggleDebug" class="custom-control-label" for="debugToggler">Debug Mode</label>
+                      </div>
+
+                      <br>
+
+                      <div class="custom-control custom-switch">
                         <input type="checkbox" class="custom-control-input" id="advancedModeToggler" onclick="MPW.toggleAdvancedMode()">
                         <label data-i18n="settingsToggleAdvancedMode" class="custom-control-label" for="advancedModeToggler">Advanced Mode</label>
                         <p style="opacity: 0.6; margin-top: 5px;"><i class="fa-solid fa-triangle-exclamation" style="margin-right: 5px;"></i><span data-i18n="settingsToggleAdvancedModeSubtext">This unlocks deeper functionality and customisation, but may be overwhelming and potentially dangerous for inexperienced users!</p>
