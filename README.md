@@ -52,6 +52,3 @@ MPW is built by [AIPG Labs](https://github.com/AIPowerGrid), a micro-DAO of [awe
 
 The mission of AIPG Labs is to accelerate the adoption & growth of AIPG as a currency, using awesomeness. Join the [AIPG Labs Discord](https://discord.gg/qguaFtDR) to meet us!
 
-<br>
-
----
