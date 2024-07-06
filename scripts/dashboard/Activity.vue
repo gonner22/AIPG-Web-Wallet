@@ -31,7 +31,7 @@
                                         📋
                                     </span>
                                     <span v-if="copiedTxId === tx.id" class="copied-message" style="font-weight: bold; margin-left: 5px;">
-                                        ✔
+                                        ✔ txid
                                     </span>
                                 </td>
                                 <td class="align-middle pr-10px">
