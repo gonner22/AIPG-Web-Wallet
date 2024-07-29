@@ -384,7 +384,6 @@ function getMaxBalance(useShieldInputs) {
         ? wallet.shieldBalance.value
         : wallet.balance.value;
     transferAmount.value = (coinSatoshi / COIN).toString();
->>>>>>> cea9e88 (Add an option to automatically lock the wallet (#317))
 }
 
 getEventEmitter().on('toggle-network', async () => {
