@@ -371,6 +371,7 @@ async function send(address, amount) {
             }
         }
     }
+}
 
 /**
  * Gets the maximum balance available in the wallet.
