@@ -352,15 +352,12 @@ async function send(address, amount) {
     transferAddress.value = '';
     transferAmount.value = '';
 
-    // Create and send the TX
-    await createAndSendTransaction({
-        address,
-        amount: nValue,
-        isDelegation: false,
-    });
     try {
-        await wallet.createAndSendTransaction(getNetwork(), address, nValue, {
-            //useShieldInputs,
+        // Create and send the TX
+        await createAndSendTransaction({
+            address,
+            amount: nValue,
+            isDelegation: false,
         });
     } catch (e) {
         console.error(e);
@@ -374,8 +371,6 @@ async function send(address, amount) {
             }
         }
     }
-}
-
 
 /**
  * Gets the maximum balance available in the wallet.
