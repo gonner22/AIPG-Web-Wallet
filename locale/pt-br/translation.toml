@@ -78,11 +78,6 @@ syncStatusFinished = "<b> Sincronização Terminada!</b><br>Sua carteira está p
 accountDeleted = "Sua conta foi deletada com successo" # Your account has been successfully deleted!
 chartImmatureBalance = "" # Immature balance
 syncLoadingSaplingProver = "" # Loading Sapling Prover
-syncShieldProgress = "" # Loading shielded blocks {current} of {total}
-useShieldInputs = "" # Use shield inputs
-newShieldAddress = "" # Get new shield address
-shieldAddress = "" # Shield address
-cantShieldToExc = "" # This address does not support shield transfers
 settingsToggleAutoLockWallet = "" # Auto Lock the Wallet
 
 [ALERTS]

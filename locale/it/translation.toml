@@ -211,11 +211,6 @@ accountDeleted = "Il tuo account è stato eliminato con successo!" # Your accoun
 activityReceivedWith = "Ricevuto con {s}" # Received with {s}
 chartImmatureBalance = "Saldo immaturo" # Immature balance
 syncLoadingSaplingProver = "Caricamento del Sapling Prover" # Loading Sapling Prover
-syncShieldProgress = "Caricamento blocchi shield {current}/{total}" # Loading shielded blocks {current} of {total}
-useShieldInputs = "Usa input shield" # Use shield inputs
-newShieldAddress = "Genera un nuovo indirizzo shield" # Get new shield address
-shieldAddress = "Indirizzo shield" # Shield address
-cantShieldToExc = "Questo indirizzo non supporta i trasferimenti shield" # This address does not support shield transfers
 settingsToggleAutoLockWallet = "" # Auto Lock the Wallet
 
 [ALERTS]

@@ -211,11 +211,6 @@ activityReceivedWith = "" # Received with {s}
 popupProposalName = "" # Proposal Name
 chartImmatureBalance = "" # Immature balance
 syncLoadingSaplingProver = "" # Loading Sapling Prover
-syncShieldProgress = "" # Loading shielded blocks {current} of {total}
-useShieldInputs = "" # Use shield inputs
-newShieldAddress = "" # Get new shield address
-shieldAddress = "" # Shield address
-cantShieldToExc = "" # This address does not support shield transfers
 settingsToggleAutoLockWallet = "" # Auto Lock the Wallet
 
 [ALERTS]

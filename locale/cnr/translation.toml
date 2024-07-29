@@ -210,12 +210,7 @@ syncStatusFinished = "<b>Završena sinhronizacija!</b><br>Vaš novčanik je spre
 activityReceivedWith = "Primljeno sa {s}" # Received with {s}
 accountDeleted = "Vaš nalog je uspešno obrisan!" # Your account has been successfully deleted!
 syncLoadingSaplingProver = "" # Loading Sapling Prover
-syncShieldProgress = "" # Loading shielded blocks {current} of {total}
 chartImmatureBalance = "" # Immature balance
-useShieldInputs = "" # Use shield inputs
-newShieldAddress = "" # Get new shield address
-shieldAddress = "" # Shield address
-cantShieldToExc = "" # This address does not support shield transfers
 settingsToggleAutoLockWallet = "" # Auto Lock the Wallet
 
 [ALERTS]

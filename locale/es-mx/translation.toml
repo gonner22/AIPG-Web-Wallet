@@ -211,11 +211,6 @@ accountDeleted = "" # Your account has been successfully deleted!
 activityReceivedWith = "" # Received with {s}
 chartImmatureBalance = "" # Immature balance
 syncLoadingSaplingProver = "" # Loading Sapling Prover
-syncShieldProgress = "" # Loading shielded blocks {current} of {total}
-useShieldInputs = "" # Use shield inputs
-newShieldAddress = "" # Get new shield address
-shieldAddress = "" # Shield address
-cantShieldToExc = "" # This address does not support shield transfers
 settingsToggleAutoLockWallet = "" # Auto Lock the Wallet
 
 [ALERTS]

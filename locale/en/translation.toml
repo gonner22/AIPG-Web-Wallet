@@ -211,11 +211,6 @@ activityReceivedWith = "Received with {s}" # Received with {s}
 accountDeleted = "Your account has been successfully deleted!" # Your account has been successfully deleted!
 chartImmatureBalance = "Immature balance" # Immature balance
 syncLoadingSaplingProver = "Loading Sapling Prover" # Loading Sapling Prover
-syncShieldProgress = "Loading shielded blocks {current} of {total}" # Loading shielded blocks {current} of {total}
-useShieldInputs = "Use shield inputs" # Use shield inputs
-newShieldAddress = "Get new shield address" # Get new shield address
-shieldAddress = "Shield address" # Shield address
-cantShieldToExc = "This address does not support shield transfers" # This address does not support shield transfers
 settingsToggleAutoLockWallet = "" # Auto Lock the Wallet
 
 [ALERTS]

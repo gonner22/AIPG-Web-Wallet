@@ -360,7 +360,7 @@ async function send(address, amount) {
     });
     try {
         await wallet.createAndSendTransaction(getNetwork(), address, nValue, {
-            useShieldInputs,
+            //useShieldInputs,
         });
     } catch (e) {
         console.error(e);
@@ -376,13 +376,12 @@ async function send(address, amount) {
     }
 }
 
+
 /**
- * @param {boolean} useShieldInputs - whether max balance is from shield or transparent pivs
+ * Gets the maximum balance available in the wallet.
  */
-function getMaxBalance(useShieldInputs) {
-    const coinSatoshi = useShieldInputs
-        ? wallet.shieldBalance.value
-        : wallet.balance.value;
+function getMaxBalance() {
+    const coinSatoshi = wallet.balance.value;
     transferAmount.value = (coinSatoshi / COIN).toString();
 }
 

@@ -210,12 +210,7 @@ syncStatusFinished = "<b>Synchronizacja Zakończona!</b><br>Twój portfel jest g
 activityReceivedWith = "Otrzymano z {s}" # Received with {s}
 accountDeleted = "Twoje konto zostało pomyślnie usunięte!" # Your account has been successfully deleted!
 syncLoadingSaplingProver = "" # Loading Sapling Prover
-syncShieldProgress = "" # Loading shielded blocks {current} of {total}
 chartImmatureBalance = "" # Immature balance
-useShieldInputs = "" # Use shield inputs
-newShieldAddress = "" # Get new shield address
-shieldAddress = "" # Shield address
-cantShieldToExc = "" # This address does not support shield transfers
 settingsToggleAutoLockWallet = "" # Auto Lock the Wallet
 
 [ALERTS]
